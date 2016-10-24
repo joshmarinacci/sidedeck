@@ -1,0 +1,153 @@
+/* =========== general ============== */
+h1, h2 {
+    font-family: 'Georgia', serif;
+    color: #ff6d12;
+    text-align: center;
+}
+h1 {
+    font-size: 400%;
+}
+h2 {
+    font-size: 200%;
+    color: #333;
+}
+section > ul, div > ul {
+    max-width: 80%;
+    font-size: 200%;
+    line-height: 1.7em;
+    text-align: left;
+}
+
+pre, code {
+    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    color: #ff6d12;
+}
+
+a {
+    color: #ff6d12;
+    text-decoration: none;
+    border: 1px solid #ff6d12;
+    padding-bottom: 0.1em;
+    border-width: 0 0 2px 0;
+    font-weight: 300;
+}
+
+
+blockquote {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 200%;
+    font-style: italic;
+    text-align: left;
+    line-height: 1.5em;
+    max-width: 70%;
+    position: relative;
+}
+blockquote:before {
+    color: #ff6d12;
+    content: open-quote;
+    font-size: 4em;
+    position: absolute;
+    left: -0.5em;
+    top:0px;
+    box-sizing: content-box;
+}
+blockquote::after{
+    /*Reset to make sure*/
+    content: "";
+}
+
+blockquote cite {
+    color: #999999;
+    font-size: 80%;
+    display: block;
+    margin-top: 5px;
+}
+blockquote cite:before {
+    content: "\2014 \2009";
+}
+
+
+/* ===================== syntax highlighting ============== */
+
+pre {
+    border: 1px solid black;
+    text-align: left;
+    font-size: 140%;
+}
+
+.hljs {
+    border: 3px solid brown;
+    background-color: lightgoldenrodyellow;
+    border-radius: 0.25em;
+    display: block;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding: 0.5em;
+    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-size: 120%;
+}
+
+
+
+.hljs-keyword {
+    color: red;
+    font-weight: 100;
+}
+.hljs-number {
+    color: blue;
+}
+.hljs-literal, .hljs-string{
+    color: #080f80;
+    font-weight: bold;
+    border: 1px solid #2bc2ff;
+    border-radius: 5px;
+    background-color: rgba(37, 237, 236, 0.34);
+}
+.hljs-function {
+    font-weight: 100;
+    color: lightblue;
+}
+.hljs-title {
+    color: black;
+}
+.hljs-params {
+    color: red;
+    font-weight: 800;
+}
+.hljs-comment {
+    color: #555555;
+    font-style: italic;
+}
+
+
+
+
+
+
+
+/* =================== slide styles ==================== */
+
+.split-v {
+    border: 1px solid purple;
+    display: flex;
+    flex-direction: row;
+    /*align-items: stretch;*/
+}
+.split-v > div, .split-v img, .split-v > ul {
+    display: flex;
+    flex-direction: column;
+    border: 0px solid red;
+    flex: 1;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+}
+
+
+section.main {
+    background-color: #ff6d12;
+    color: white;
+}
+section.main h1, section.main h2 {
+    color:white;
+}

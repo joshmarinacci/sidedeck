@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Excellent Presentation</title>
+    <script src="scripts/code.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/highlight.min.js"></script>
+</head>
+<body>
+<footer>
+    <span>@joshmarinacci</span>
+    <span class="grow"></span>
+    <span>PubNub</span>
+</footer>
+
+
+
+<section class="split-v">
+    <div>
+        <h1>jesse</h1></div>
+    <div>
+        <ul>
+            <li>foo</li>
+            <li>bar</li>
+            <li>baz</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h1>code sample</h1>
+    <pre id='slide1' class="code javascript">
+//this is a pretty cool code
+function doCoolStuff(things, other) {
+    for(var i=0; i&lt;other.length; i++) {
+        console.log("doing thing " + i + things[i]);
+    }
+}
+//don't you think?
+
+/* yes, i really like it */
+function doMoreStuff(more) {
+
+    //this is where the real action happens
+    more.map((x)=> {
+        console.log(x);
+    });
+}
+
+function doMoreStuff(more) {
+
+    //this is where the real action happens
+    more.map((x)=> {
+        console.log(x);
+    });
+}
+
+function doMoreStuff(more) {
+
+    //this is where the real action happens
+    more.map((x)=> {
+        console.log(x);
+    });
+}
+    </pre>
+</section>
+
+<section class="main">
+    <h1>Infopocalypse 2020</h1>
+    <h2>@joshmarinacci</h2>
+</section>
+
+<section>
+    <img src="images/waltz.gif"/>
+</section>
+
+
+
+<script type="text/javascript">
+    function style() {
+        var elem = document.getElementById("slide1");
+        hljs.highlightBlock(elem);
+    }
+    setTimeout(style,10);
+</script>
+</body>
+</html>
