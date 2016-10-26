@@ -1,0 +1,26 @@
+@media print {
+    section {
+        position: relative;
+        transform: none;
+        border: 1px solid black;
+        page-break-before: always;
+    }
+
+    .before, .prev, .active, .next, .after {
+        transform: none;
+        visibility: visible;
+    }
+
+    body section aside {
+        display: block;
+        position: relative;
+    }
+    footer {
+        position: fixed;
+        display: none;
+    }
+    body {
+        overflow: auto;
+    }
+
+}

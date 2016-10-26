@@ -128,7 +128,7 @@ pre {
 /* =================== slide styles ==================== */
 
 .split-v {
-    border: 1px solid purple;
+    border: 0px solid purple;
     display: flex;
     flex-direction: row;
     /*align-items: stretch;*/
@@ -150,4 +150,7 @@ section.main {
 }
 section.main h1, section.main h2 {
     color:white;
+}
+section.main a {
+    color: white;
 }

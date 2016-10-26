@@ -78,6 +78,10 @@ document.addEventListener('keydown',function(e) {
     if(e.key == 's') toggleSpeakerNotes();
 });
 
+function navToSlide(n){
+    cur = n;
+    resetStyles(getSections());
+}
 
 setTimeout(()=>{
     resetStyles(getSections());
