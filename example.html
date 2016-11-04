@@ -16,11 +16,15 @@
     <span>@joshmarinacci</span>
     <span class="grow"></span>
     <span>PubNub</span>
+    <button id="questions-show">Questions</button>
 </footer>
 
 <section>
     <h1>My presentation</h1>
     <h2>this is some cool stuff</h2>
+    <aside>
+        these are some speaker notes
+    </aside>
 </section>
 
 <section class="split-v">
@@ -88,14 +92,14 @@ function doMoreStuff(more) {
 </section>
 
 
-<div id="questions-view">
-
-</div>
-
-
-<div id="questions-ask">
-    <input  id="question-field" type="text">
-    <button id="question-button">send</button>
+<div id="questions-panel" class="vbox">
+    <div class="grow scroll" id="questions-view-wrapper">
+        <div id="questions-view"></div>
+    </div>
+    <div id="questions-ask" class="hbox">
+        <input  id="question-field" type="text" class="grow">
+        <button id="question-button">send</button>
+    </div>
 </div>
 
 <script src="scripts/code.js" type="application/javascript"></script>

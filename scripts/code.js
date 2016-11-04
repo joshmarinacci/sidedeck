@@ -5,8 +5,8 @@
 
 
 var pubnub = new PubNub({
-    publishKey: 'demo',
-    subscribeKey: 'demo',
+    publishKey: 'pub-c-f0f65c4a-c2a6-478d-988f-760c3c6274c8',
+    subscribeKey: 'sub-c-0b51cb4e-a24a-11e6-8741-02ee2ddab7fe',
     uuid:PubNub.generateUUID(),
 });
 
@@ -109,6 +109,7 @@ document.addEventListener('keydown',function(e) {
         pubnub.publish({channel:config.channels.slides, message:{ dir:'left', index:cur, uuid:pubnub.getUUID()}});
     }
     if(e.key == 's') toggleSpeakerNotes();
+    if(e.key == 'q') toggleQuestions();
 });
 
 function navToSlide(n){
@@ -118,17 +119,21 @@ function navToSlide(n){
 
 setTimeout(()=> resetStyles(getSections()),100);
 
+function $(text) {
+    return document.getElementById(text);
+}
+function scrollToBottom(wrapper) {
+    wrapper.scrollTop = wrapper.scrollHeight;
+}
 function appendQuestion(text) {
-    console.log("text is",text);
-    var div = document.getElementById("questions-view");
     var txt = document.createElement("div");
     txt.innerHTML = "<b>Q</b> " + text;
-    div.appendChild(txt);
+    $("questions-view").appendChild(txt);
+    scrollToBottom($('questions-view-wrapper'));
 }
 
 pubnub.addListener({
     message: (m) => {
-        //console.log("message", m.subscribedChannel, m.message, m.message.uuid);
         if(m.subscribedChannel == config.channels.slides) {
             if (pubnub.getUUID() !== m.message.uuid) {
                 if (m.message.dir === 'left')  navToSlide(m.message.index);
@@ -136,7 +141,6 @@ pubnub.addListener({
             }
         }
         if(m.subscribedChannel == config.channels.questions) {
-            console.log("question asked",m);
             appendQuestion(m.message.text);
         }
     }
@@ -144,25 +148,31 @@ pubnub.addListener({
 
 
 function sendQuestion() {
-    var input = document.getElementById("question-field");
     pubnub.publish({
         channel: config.channels.questions,
         message: {
-            text: input.value,
+            text: $("question-field").value,
             uuid: pubnub.getUUID()
         }
     });
-    input.value = '';
+    $("question-field").value = '';
+}
+
+function onEnter(cb) {
+    return function(e) {
+        if(e.keyCode == 13) cb();
+    }
+}
+
+function toggleQuestions() {
+    $('questions-panel').classList.toggle('visible');
 }
 
 function setupChat() {
-    var input = document.getElementById("question-field");
-    var button = document.getElementById("question-button");
-    button.addEventListener('click',sendQuestion);
-    input.addEventListener('keypress',(e) => {
-        if(e.keyCode == 13) {
-            sendQuestion();
-        }
-    });
+    $("question-button").addEventListener('click',sendQuestion);
+    $('question-field').addEventListener('keypress',onEnter(sendQuestion));
+    $("questions-show").addEventListener('click',toggleQuestions);
 }
 setupChat();
+
+

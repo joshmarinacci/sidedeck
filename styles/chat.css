@@ -1,16 +1,38 @@
-#questions-ask {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: 5px solid red;
+.vbox {
+    display: flex;
+    flex-direction: column;
+}
+.hbox {
+    display: flex;
+    flex-direction: row;
+}
+.grow {
+    flex: 1;
+}
+.scroll {
+    overflow: scroll;
+}
+.debug {
+    border: 1px solid red;
 }
 
-#questions-view {
-    display: block;
+#questions-panel {
     position: absolute;
     top: 0;
+    bottom: 10vh;
     right: 0;
-    border: 5px solid red;
-    width: 200px;
+    border: 1px solid lightgrey;
+    visibility: hidden;
+    background-color: #f0f0f0;
+    width: 30vw;
+    min-width: 20vw;
+    font-family: "TypoPRO Source Sans Pro", sans-serif;
+    padding: 0.5em;
 }
+#questions-panel input {
+    font-size: 100%;
+}
+#questions-panel.visible {
+    visibility: visible;
+}
+
