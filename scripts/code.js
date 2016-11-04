@@ -3,7 +3,7 @@
  */
 
 
-
+var $ = utils.lookup;
 var pubnub = new PubNub({
     publishKey: 'pub-c-f0f65c4a-c2a6-478d-988f-760c3c6274c8',
     subscribeKey: 'sub-c-0b51cb4e-a24a-11e6-8741-02ee2ddab7fe',
@@ -11,18 +11,8 @@ var pubnub = new PubNub({
 });
 
 
-function params(defs) {
-    var query = document.location.search;
-    if(query && query[0] === '?') {
-        query.substring(1).split('&').map((part)=>{
-            var parts = part.split('=');
-            defs[parts[0]] = parts[1];
-        });
-    }
-    return defs;
-}
 
-var config = params({mode:'speaker'});
+var config = utils.params({mode:'speaker'});
 config.channels = {
     slides:'presso-slides',
     questions:'presso-questions'
@@ -31,16 +21,6 @@ console.log("config = ",config);
 pubnub.subscribe({channels:[config.channels.slides, config.channels.questions]});
 
 
-function hlistToArray(hlst) {
-    var arr = [];
-    for(var i=0; i<hlst.length; i++) {
-        arr[i] = hlst[i];
-    }
-    return arr;
-}
-function getSections() {
-    return hlistToArray(document.getElementsByTagName('section'));
-}
 function findSelected(sections) {
     var found = null;
     sections.forEach((s,i) => {
@@ -84,13 +64,13 @@ function resetStyles(sections) {
     }
 }
 function navRight() {
-    var sections = getSections();
+    var sections = $("section");
     cur = Math.min(cur+1,sections.length);
     resetStyles(sections);
 }
 
 function navLeft() {
-    var sections = getSections();
+    var sections = $("section")
     cur = Math.max(0,cur-1);
     resetStyles(sections);
 }
@@ -114,22 +94,16 @@ document.addEventListener('keydown',function(e) {
 
 function navToSlide(n){
     cur = n;
-    resetStyles(getSections());
+    resetStyles($("section"));
 }
 
-setTimeout(()=> resetStyles(getSections()),100);
+setTimeout(()=> resetStyles($("section")),100);
 
-function $(text) {
-    return document.getElementById(text);
-}
-function scrollToBottom(wrapper) {
-    wrapper.scrollTop = wrapper.scrollHeight;
-}
 function appendQuestion(text) {
     var txt = document.createElement("div");
     txt.innerHTML = "<b>Q</b> " + text;
-    $("questions-view").appendChild(txt);
-    scrollToBottom($('questions-view-wrapper'));
+    $("#questions-view").appendChild(txt);
+    utils.scrollToBottom($('#questions-view-wrapper'));
 }
 
 pubnub.addListener({
@@ -151,27 +125,23 @@ function sendQuestion() {
     pubnub.publish({
         channel: config.channels.questions,
         message: {
-            text: $("question-field").value,
+            text: $("#question-field").value,
             uuid: pubnub.getUUID()
         }
     });
-    $("question-field").value = '';
+    $("#question-field").value = '';
 }
 
-function onEnter(cb) {
-    return function(e) {
-        if(e.keyCode == 13) cb();
-    }
-}
 
 function toggleQuestions() {
-    $('questions-panel').classList.toggle('visible');
+    $('#questions-panel').classList.toggle('visible');
+    $('#question-field').focus();
 }
 
 function setupChat() {
-    $("question-button").addEventListener('click',sendQuestion);
-    $('question-field').addEventListener('keypress',onEnter(sendQuestion));
-    $("questions-show").addEventListener('click',toggleQuestions);
+    $("#question-button").addEventListener('click',sendQuestion);
+    $('#question-field').addEventListener('keypress',utils.onEnter(sendQuestion));
+    $("#questions-show").addEventListener('click',toggleQuestions);
 }
 setupChat();
 
