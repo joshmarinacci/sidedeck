@@ -1,12 +1,12 @@
 /* ============ general ============= */
 body {
-    font-family: 'Helvetica-Neue', sans-serif;
     padding: 0;
     margin: 0;
     color: black;
     background-color: white;
     overflow: hidden;
 }
+
 section {
     border: 0px solid black;
     height: 90vh;
@@ -20,7 +20,6 @@ section {
     text-align: center;
     position: absolute;
     box-sizing: border-box;
-
 }
 
 /* ============= footer ============= */
@@ -39,8 +38,6 @@ footer {
     font-size: 130%;
     border: 0px solid black;
     align-items: center;
-}
-footer {
     padding: 1em;
 }
 

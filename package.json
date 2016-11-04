@@ -1,0 +1,25 @@
+{
+  "name": "sidedeck",
+  "version": "0.0.1",
+  "description": "template for HTML based slideshows. focused on:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshmarinacci/sidedeck.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshmarinacci/sidedeck/issues"
+  },
+  "homepage": "https://github.com/joshmarinacci/sidedeck#readme",
+  "dependencies": {
+    "@typopro/web-source-code-pro": "^3.4.9",
+    "@typopro/web-source-sans-pro": "^3.4.9",
+    "@typopro/web-source-serif-pro": "^3.4.9",
+    "pubnub": "^4.2.3"
+  }
+}

@@ -2,7 +2,33 @@
  * Created by josh on 10/21/16.
  */
 
-console.log("in the app");
+
+
+var pubnub = new PubNub({
+    publishKey: 'demo',
+    subscribeKey: 'demo',
+    uuid:PubNub.generateUUID(),
+});
+
+
+function params(defs) {
+    var query = document.location.search;
+    if(query && query[0] === '?') {
+        query.substring(1).split('&').map((part)=>{
+            var parts = part.split('=');
+            defs[parts[0]] = parts[1];
+        });
+    }
+    return defs;
+}
+
+var config = params({mode:'speaker'});
+config.channels = {
+    slides:'presso-slides'
+};
+console.log("config = ",config);
+pubnub.subscribe({channels:[config.channels.slides]});
+
 
 function hlistToArray(hlst) {
     var arr = [];
@@ -73,8 +99,14 @@ function toggleSpeakerNotes() {
 }
 
 document.addEventListener('keydown',function(e) {
-    if(e.code == 'ArrowRight') navRight();
-    if(e.code == 'ArrowLeft')  navLeft();
+    if(e.code == 'ArrowRight') {
+        navRight();
+        pubnub.publish({channel:config.channels.slides, message:{ dir:'right', index:cur, uuid:pubnub.getUUID()}});
+    }
+    if(e.code == 'ArrowLeft')  {
+        navLeft();
+        pubnub.publish({channel:config.channels.slides, message:{ dir:'left', index:cur, uuid:pubnub.getUUID()}});
+    }
     if(e.key == 's') toggleSpeakerNotes();
 });
 
@@ -83,6 +115,20 @@ function navToSlide(n){
     resetStyles(getSections());
 }
 
-setTimeout(()=>{
-    resetStyles(getSections());
-},100);
+setTimeout(()=> resetStyles(getSections()),100);
+
+pubnub.addListener({
+    message: (m) => {
+        //console.log("message", m.subscribedChannel, m.message, m.message.uuid);
+        if(pubnub.getUUID() !== m.message.uuid) {
+            if(m.message.dir === 'left') {
+                navToSlide(m.message.index);
+                //navLeft();
+            }
+            if(m.message.dir === 'right') {
+                navToSlide(m.message.index);
+                //navRight();
+            }
+        }
+    }
+});

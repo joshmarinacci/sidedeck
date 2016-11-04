@@ -1,6 +1,6 @@
 /* =========== general ============== */
 h1, h2 {
-    font-family: 'Georgia', serif;
+    font-family: "TypoPRO Source Serif Pro", serif;
     color: #ff6d12;
     text-align: center;
 }
@@ -19,7 +19,7 @@ section > ul, div > ul {
 }
 
 pre, code {
-    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-family: "TypoPRO Source Code Pro", monospace;
     color: #ff6d12;
 }
 
@@ -32,9 +32,13 @@ a {
     font-weight: 300;
 }
 
+footer {
+    font-family: "TypoPRO Source Sans Pro";
+    font-weight: 300;
+}
 
 blockquote {
-    font-family: 'Helvetica', sans-serif;
+    font-family: "TypoPRO Source Sans Pro", sans-serif;
     font-size: 200%;
     font-style: italic;
     text-align: left;
@@ -83,7 +87,8 @@ pre {
     overflow-x: auto;
     overflow-y: scroll;
     padding: 0.5em;
-    font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
+    font-family: "TypoPRO Source Code Pro", monospace;
+    font-weight: normal;
     font-size: 120%;
 }
 
@@ -91,7 +96,7 @@ pre {
 
 .hljs-keyword {
     color: red;
-    font-weight: 100;
+    font-weight: 300;
 }
 .hljs-number {
     color: blue;
@@ -104,7 +109,7 @@ pre {
     background-color: rgba(37, 237, 236, 0.34);
 }
 .hljs-function {
-    font-weight: 100;
+    font-weight: bold;
     color: lightblue;
 }
 .hljs-title {
