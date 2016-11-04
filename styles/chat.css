@@ -1,0 +1,16 @@
+#questions-ask {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 5px solid red;
+}
+
+#questions-view {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 5px solid red;
+    width: 200px;
+}

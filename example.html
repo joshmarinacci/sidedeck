@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>My Excellent Presentation</title>
     <script src="node_modules/pubnub/dist/web/pubnub.min.js"></script>
-    <script src="scripts/code.js" type="application/javascript"></script>
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/highlight.min.js"></script>
     <link rel="stylesheet" href="node_modules/@typopro/web-source-serif-pro/TypoPRO-SourceSerifPro.css">
@@ -89,6 +88,17 @@ function doMoreStuff(more) {
 </section>
 
 
+<div id="questions-view">
+
+</div>
+
+
+<div id="questions-ask">
+    <input  id="question-field" type="text">
+    <button id="question-button">send</button>
+</div>
+
+<script src="scripts/code.js" type="application/javascript"></script>
 <script type="text/javascript">
     function style() {
         var elem = document.getElementById("slide1");

@@ -24,10 +24,11 @@ function params(defs) {
 
 var config = params({mode:'speaker'});
 config.channels = {
-    slides:'presso-slides'
+    slides:'presso-slides',
+    questions:'presso-questions'
 };
 console.log("config = ",config);
-pubnub.subscribe({channels:[config.channels.slides]});
+pubnub.subscribe({channels:[config.channels.slides, config.channels.questions]});
 
 
 function hlistToArray(hlst) {
@@ -117,18 +118,51 @@ function navToSlide(n){
 
 setTimeout(()=> resetStyles(getSections()),100);
 
+function appendQuestion(text) {
+    console.log("text is",text);
+    var div = document.getElementById("questions-view");
+    var txt = document.createElement("div");
+    txt.innerHTML = "<b>Q</b> " + text;
+    div.appendChild(txt);
+}
+
 pubnub.addListener({
     message: (m) => {
         //console.log("message", m.subscribedChannel, m.message, m.message.uuid);
-        if(pubnub.getUUID() !== m.message.uuid) {
-            if(m.message.dir === 'left') {
-                navToSlide(m.message.index);
-                //navLeft();
+        if(m.subscribedChannel == config.channels.slides) {
+            if (pubnub.getUUID() !== m.message.uuid) {
+                if (m.message.dir === 'left')  navToSlide(m.message.index);
+                if (m.message.dir === 'right') navToSlide(m.message.index);
             }
-            if(m.message.dir === 'right') {
-                navToSlide(m.message.index);
-                //navRight();
-            }
+        }
+        if(m.subscribedChannel == config.channels.questions) {
+            console.log("question asked",m);
+            appendQuestion(m.message.text);
         }
     }
 });
+
+
+function sendQuestion() {
+    var input = document.getElementById("question-field");
+    pubnub.publish({
+        channel: config.channels.questions,
+        message: {
+            text: input.value,
+            uuid: pubnub.getUUID()
+        }
+    });
+    input.value = '';
+}
+
+function setupChat() {
+    var input = document.getElementById("question-field");
+    var button = document.getElementById("question-button");
+    button.addEventListener('click',sendQuestion);
+    input.addEventListener('keypress',(e) => {
+        if(e.keyCode == 13) {
+            sendQuestion();
+        }
+    });
+}
+setupChat();
