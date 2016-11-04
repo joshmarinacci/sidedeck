@@ -80,6 +80,9 @@ function toggleSpeakerNotes() {
 }
 
 document.addEventListener('keydown',function(e) {
+    var tag = e.target.tagName.toLowerCase();
+    if(tag !== 'body') return;
+
     if(e.code == 'ArrowRight') {
         navRight();
         pubnub.publish({channel:config.channels.slides, message:{ dir:'right', index:cur, uuid:pubnub.getUUID()}});
