@@ -36,3 +36,19 @@
     visibility: visible;
 }
 
+
+
+.speaker-display #questions-panel {
+    position: absolute;
+    height: 45vh;
+    width: 45vw;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    top: auto;
+    border: 1px solid lightgrey;
+    visibility: visible;
+    background-color: #f0f0f0;
+    font-family: "TypoPRO Source Sans Pro", sans-serif;
+    padding: 0.5em;
+}

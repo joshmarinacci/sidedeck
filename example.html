@@ -39,6 +39,9 @@
             <li>baz</li>
         </ul>
     </div>
+    <aside>
+        more speaker notes, this time with <b>bold text</b>
+    </aside>
 </section>
 
 <section>
@@ -91,8 +94,19 @@ function doMoreStuff(more) {
 
 <section>
     <blockquote>this is some cool stuff</blockquote>
+    <aside><ul><li>notes 1</li><li>notes 2</li><li>notes 3</li></ul></aside>
 </section>
 
+<div id="speaker-view" class="hbox">
+    <div class="vbox grow">
+        <div class="grow panel">currnet slide</div>
+        <div class="grow panel">next slide</div>
+    </div>
+    <div class="vbox grow">
+        <div class="grow panel" id="speaker-notes">my notes</div>
+        <div class="grow panel" id="speaker-questions">questions</div>
+    </div>
+</div>
 
 <div id="questions-panel" class="vbox">
     <div class="grow scroll" id="questions-view-wrapper">

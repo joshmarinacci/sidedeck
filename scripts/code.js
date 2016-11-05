@@ -12,12 +12,17 @@ var pubnub = new PubNub({
 
 
 
-var config = utils.params({mode:'speaker'});
+var config = utils.params({mode:'editor'});
 config.channels = {
     slides:'presso-slides',
     questions:'presso-questions'
 };
 console.log("config = ",config);
+
+//turn on speaker mode
+if(config.mode === 'speaker') {
+    document.body.classList.add("speaker-display");
+}
 pubnub.subscribe({channels:[config.channels.slides, config.channels.questions]});
 
 
@@ -54,6 +59,7 @@ function resetStyles(sections) {
         }
         if (i == cur) {
             sec.classList.add('active');
+            updateSpeakerView(sec);
         }
         if (i == cur + 1) {
             sec.classList.add('next');
@@ -138,7 +144,7 @@ function sendQuestion() {
 
 function toggleQuestions() {
     $('#questions-panel').classList.toggle('visible');
-    $('#question-field').focus();
+    setTimeout(()=>$('#question-field').focus(),100);
 }
 
 function setupChat() {
@@ -147,4 +153,16 @@ function setupChat() {
     $("#questions-show").addEventListener('click',toggleQuestions);
 }
 setupChat();
+
+function updateSpeakerView(section) {
+    var asides = section.getElementsByTagName('aside');
+    var div = $("#speaker-notes");
+    while(div.firstChild) div.removeChild(div.firstChild)
+    if(asides.length > 0) {
+        var clone = asides[0].cloneNode(true);
+        $("#speaker-notes").appendChild(clone);
+    }
+}
+
+
 

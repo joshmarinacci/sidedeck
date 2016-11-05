@@ -90,3 +90,45 @@ img {
 button {
     margin: 0em 0.5em;
 }
+
+#speaker-view {
+    visibility: hidden;
+}
+.speaker-display #speaker-view {
+    visibility: visible;
+}
+#speaker-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+}
+.panel {
+    border: 1px solid black;
+}
+
+
+
+.speaker-display section.active {
+    border: 5px solid red;
+    transform: translate3d(-25%,-25%,0) scale(0.5, 0.5);
+}
+.speaker-display section.next {
+    border: 5px solid blue;
+    transform: translate3d(-25%,30%,0) scale(0.4, 0.4);
+}
+
+.speaker-display #speaker-questions {
+     background-color: white;
+}
+.speaker-display #speaker-notes {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.speaker-display #speaker-notes aside {
+    display: block;
+    position: relative;
+    width: auto;
+}
