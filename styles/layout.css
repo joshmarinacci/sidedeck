@@ -34,12 +34,13 @@ footer {
     display: flex;
     flex-direction: row;
     color: white;
-    height: 4em;
+    height: 3em;
     margin:0;
     box-sizing: border-box;
     font-size: 130%;
     border: 0px solid black;
     padding: 1em;
+    align-items: center;
 }
 
 
