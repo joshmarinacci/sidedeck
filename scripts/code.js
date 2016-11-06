@@ -57,7 +57,7 @@ var slides = {
             }
             if (i == cur) {
                 sec.classList.add('active');
-                updateSpeakerView(sec);
+                speakerView.updateSpeakerView(sec);
             }
             if (i == cur + 1) {
                 sec.classList.add('next');
@@ -95,23 +95,28 @@ window.addEventListener('popstate',function(e){
     if(e.state && e.state.index) navToSlide(e.state.index);
 });
 
-function toggleSpeakerNotes() {
-    document.getElementsByTagName('body')[0].classList.toggle('display-speaker-notes');
-}
+var keybinder = {
+    bindings: {},
+    keybind:function(key, cb) {
+        if(key == 's')      this.bindings[83] = cb;
+        if(key == 'q')      this.bindings[81] = cb;
+        if(key == 'right')  this.bindings[39] = cb;
+        if(key == 'left')   this.bindings[37] = cb;
+    },
+    setup:function() {
+        document.addEventListener('keydown',(e) => {
+            //skip events that didn't come from the body, so we don't mess with textareas and inputs
+            if(e.target.tagName.toLowerCase() !== 'body') return;
+            if(this.bindings[e.keyCode]) this.bindings[e.keyCode]();
+        });
+    }
+};
 
-var bindings = {}
-function keybind(key, cb) {
-    if(key == 's') bindings[83] = cb;
-    if(key == 'q') bindings[81] = cb;
-    if(key == 'right') bindings[39] = cb;
-    if(key == 'left') bindings[37] = cb;
-}
-keybind('s',toggleSpeakerNotes);
-keybind('right', function() {
+keybinder.keybind('right', function() {
     slides.navRight();
     pubnub.publish({channel:config.channels.slides, message:{ dir:'right', index:cur, uuid:pubnub.getUUID()}});
 });
-keybind('left', function() {
+keybinder.keybind('left', function() {
     slides.navLeft();
     pubnub.publish({channel:config.channels.slides, message:{ dir:'left', index:cur, uuid:pubnub.getUUID()}});
 });
@@ -143,20 +148,14 @@ var questions = {
         $("#questions-show").addEventListener('click',questions.toggleQuestions);
     }
 };
-keybind('q',questions.toggleQuestions);
 
-document.addEventListener('keydown',function(e) {
-    //skip events that didn't come from the body, so we don't mess with textareas and inputs
-    if(e.target.tagName.toLowerCase() !== 'body') return;
-    if(bindings[e.keyCode]) bindings[e.keyCode]();
-});
 
 pubnub.addListener({
     message: (m) => {
         if(m.subscribedChannel == config.channels.slides) {
             if (pubnub.getUUID() !== m.message.uuid) {
-                if (m.message.dir === 'left')  navToSlide(m.message.index);
-                if (m.message.dir === 'right') navToSlide(m.message.index);
+                if (m.message.dir === 'left')  slides.navToSlide(m.message.index);
+                if (m.message.dir === 'right') slides.navToSlide(m.message.index);
             }
         }
         if(m.subscribedChannel == config.channels.questions) {
@@ -165,18 +164,26 @@ pubnub.addListener({
     }
 });
 
+var speakerView = {
+    updateSpeakerView: function (section) {
+        var asides = section.getElementsByTagName('aside');
+        var div = $("#speaker-notes");
+        while (div.firstChild) div.removeChild(div.firstChild)
+        if (asides.length > 0) {
+            var clone = asides[0].cloneNode(true);
+            $("#speaker-notes").appendChild(clone);
+        }
+    },
 
-function updateSpeakerView(section) {
-    var asides = section.getElementsByTagName('aside');
-    var div = $("#speaker-notes");
-    while(div.firstChild) div.removeChild(div.firstChild)
-    if(asides.length > 0) {
-        var clone = asides[0].cloneNode(true);
-        $("#speaker-notes").appendChild(clone);
+    toggleSpeakerNotes:function() {
+        document.getElementsByTagName('body')[0].classList.toggle('display-speaker-notes');
     }
-}
+};
 
 utils.defer(function() {
+    keybinder.keybind('s',speakerView.toggleSpeakerNotes);
+    keybinder.keybind('q',questions.toggleQuestions);
+    keybinder.setup();
     questions.setupChat();
     slides.resetStyles($('section'));
 });
