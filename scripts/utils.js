@@ -34,6 +34,9 @@ var utils = {
         if(name[0] === '#') return document.getElementById(name.substring(1));
         if(name[0] === '.') return utils.nodeListToArray(document.getElementsByClassName(name.substring(1)));
         return utils.nodeListToArray(document.getElementsByTagName(name));
+    },
+    defer: function(cb) {
+        setTimeout(cb,100);
     }
 
 };
