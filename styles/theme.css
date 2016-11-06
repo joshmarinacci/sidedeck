@@ -1,4 +1,7 @@
 /* =========== general ============== */
+body {
+    font-family: "TypoPRO Source Sans Pro", sans-serif;
+}
 h1, h2 {
     font-family: "TypoPRO Source Serif Pro", serif;
     color: #ff6d12;
