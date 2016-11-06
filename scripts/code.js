@@ -85,10 +85,25 @@ var slides = {
     }
 };
 
-//turn on speaker mode
-if(config.mode === 'speaker') {
-    document.body.classList.add("speaker-display");
-}
+var speakerView = {
+    updateSpeakerView: function (section) {
+        var asides = section.getElementsByTagName('aside');
+        var div = $("#speaker-notes");
+        while (div.firstChild) div.removeChild(div.firstChild)
+        if (asides.length > 0) {
+            var clone = asides[0].cloneNode(true);
+            $("#speaker-notes").appendChild(clone);
+        }
+    },
+
+    toggleSpeakerNotes:function() {
+        document.getElementsByTagName('body')[0].classList.toggle('display-speaker-notes');
+    },
+    turnOn() {
+        document.body.classList.add("speaker-display");
+    }
+};
+
 pubnub.subscribe({channels:[config.channels.slides, config.channels.questions]});
 
 window.addEventListener('popstate',function(e){
@@ -164,21 +179,6 @@ pubnub.addListener({
     }
 });
 
-var speakerView = {
-    updateSpeakerView: function (section) {
-        var asides = section.getElementsByTagName('aside');
-        var div = $("#speaker-notes");
-        while (div.firstChild) div.removeChild(div.firstChild)
-        if (asides.length > 0) {
-            var clone = asides[0].cloneNode(true);
-            $("#speaker-notes").appendChild(clone);
-        }
-    },
-
-    toggleSpeakerNotes:function() {
-        document.getElementsByTagName('body')[0].classList.toggle('display-speaker-notes');
-    }
-};
 
 utils.defer(function() {
     keybinder.keybind('s',speakerView.toggleSpeakerNotes);
@@ -186,4 +186,8 @@ utils.defer(function() {
     keybinder.setup();
     questions.setupChat();
     slides.resetStyles($('section'));
+    //turn on speaker mode
+    if(config.mode === 'speaker') {
+        speakerView.turnOn();
+    }
 });
