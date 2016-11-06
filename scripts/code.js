@@ -12,12 +12,18 @@ var pubnub = new PubNub({
 
 
 
-var config = utils.params({mode:'editor', index:3});
+var config = utils.params({mode:'editor', index:0});
 config.channels = {
     slides:'presso-slides',
     questions:'presso-questions'
 };
 console.log("config = ",config);
+var cur = config.index;
+if(config.hash && !isNaN(Number.parseInt(config.hash))) {
+    cur = Number.parseInt(config.hash);
+}
+console.log("final cur = ", cur);
+
 
 //turn on speaker mode
 if(config.mode === 'speaker') {
@@ -25,6 +31,9 @@ if(config.mode === 'speaker') {
 }
 pubnub.subscribe({channels:[config.channels.slides, config.channels.questions]});
 
+window.addEventListener('popstate',function(e){
+    if(e.state && e.state.index) navToSlide(e.state.index);
+});
 
 function findSelected(sections) {
     var found = null;
@@ -42,7 +51,6 @@ function findSelected(sections) {
     return found;
 }
 
-var cur = config.index;
 function resetStyles(sections) {
     for (var i = 0; i < sections.length; i++) {
         var sec = sections[i];
@@ -73,12 +81,14 @@ function navRight() {
     var sections = $("section");
     cur = Math.min(cur+1,sections.length);
     resetStyles(sections);
+    history.pushState({index:cur},null,'#'+cur);
 }
 
 function navLeft() {
     var sections = $("section")
     cur = Math.max(0,cur-1);
     resetStyles(sections);
+    history.pushState({index:cur},null,'#'+cur);
 }
 
 function toggleSpeakerNotes() {

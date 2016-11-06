@@ -20,6 +20,7 @@ var utils = {
         return arr;
     },
     params:function(defs) {
+        if(document.location.hash) defs.hash = document.location.hash.substring(1);
         var query = document.location.search;
         if(query && query[0] === '?') {
             query.substring(1).split('&').map((part)=>{
