@@ -56,7 +56,6 @@ blockquote:before {
     box-sizing: content-box;
 }
 blockquote::after{
-    /*Reset to make sure*/
     content: "";
 }
 
@@ -72,6 +71,7 @@ blockquote cite:before {
 
 
 /* ===================== syntax highlighting ============== */
+
 
 pre {
     border: 1px solid black;
@@ -133,19 +133,13 @@ pre {
 /* =================== slide styles ==================== */
 
 .split-v {
-    border: 0px solid purple;
     display: flex;
     flex-direction: row;
-    /*align-items: stretch;*/
 }
 .split-v > div, .split-v img, .split-v > ul {
     display: flex;
     flex-direction: column;
-    border: 0px solid red;
     flex: 1;
-    align-items: left;
-    justify-content: left;
-    text-align: left;
 }
 
 

@@ -8,9 +8,11 @@ body {
 }
 
 section {
-    border: 0px solid black;
-    height: 90vh;
-    width: 100vw;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 4em;
     padding:0;
     margin:0;
     display: flex;
@@ -18,28 +20,28 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: absolute;
+    position: fixed;
     box-sizing: border-box;
 }
 
 /* ============= footer ============= */
 footer {
-    position: fixed;
-    bottom: 0;
-    left:0;
-    right:0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: #555;
     display: flex;
     flex-direction: row;
     color: white;
-    height: 10vh;
+    height: 4em;
     margin:0;
     box-sizing: border-box;
     font-size: 130%;
     border: 0px solid black;
-    align-items: center;
     padding: 1em;
 }
+
 
 /* ============== speaker notes ============= */
 aside {
