@@ -1,3 +1,7 @@
+@import "../node_modules/@typopro/web-source-serif-pro/TypoPRO-SourceSerifPro.css";
+@import "../node_modules/@typopro/web-source-code-pro/TypoPRO-SourceCodePro.css";
+@import "../node_modules/@typopro/web-source-sans-pro/TypoPRO-SourceSansPro.css";
+
 @import "layout.css";
 @import "chat.css";
 @import "theme.css";

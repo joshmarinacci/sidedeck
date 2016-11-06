@@ -6,9 +6,6 @@
     <script src="node_modules/pubnub/dist/web/pubnub.min.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/highlight.min.js"></script>
-    <link rel="stylesheet" href="node_modules/@typopro/web-source-serif-pro/TypoPRO-SourceSerifPro.css">
-    <link rel="stylesheet" href="node_modules/@typopro/web-source-code-pro/TypoPRO-SourceCodePro.css">
-    <link rel="stylesheet" href="node_modules/@typopro/web-source-sans-pro/TypoPro-SourceSansPro.css">
 </head>
 <body>
 
@@ -96,8 +93,19 @@ function doMoreStuff(more) {
     <aside><ul><li>notes 1</li><li>notes 2</li><li>notes 3</li></ul></aside>
 </section>
 
-<section>
+<section id="myslide1">
     <h1>page 7</h1>
+    <script type="text/javascriptx">
+        slides.on("preshow", 'myslide1', function() {
+            console.log("slide 7 is showing next");
+        })
+        slides.on("show", 'myslide1', function() {
+            console.log("slide 7 is showing now");
+        })
+        slides.on("postshow", 'myslide1', function() {
+            console.log("slide 7 is no longer showing");
+        })
+    </script>
 </section>
 
 <section>
