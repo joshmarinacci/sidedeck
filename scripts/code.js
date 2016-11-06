@@ -12,7 +12,7 @@ var pubnub = new PubNub({
 
 
 
-var config = utils.params({mode:'editor'});
+var config = utils.params({mode:'editor', index:3});
 config.channels = {
     slides:'presso-slides',
     questions:'presso-questions'
@@ -42,7 +42,7 @@ function findSelected(sections) {
     return found;
 }
 
-var cur = 0;
+var cur = config.index;
 function resetStyles(sections) {
     for (var i = 0; i < sections.length; i++) {
         var sec = sections[i];
@@ -85,20 +85,28 @@ function toggleSpeakerNotes() {
     document.getElementsByTagName('body')[0].classList.toggle('display-speaker-notes');
 }
 
-document.addEventListener('keydown',function(e) {
-    var tag = e.target.tagName.toLowerCase();
-    if(tag !== 'body') return;
+var bindings = {}
+function keybind(key, cb) {
+    if(key == 's') bindings[83] = cb;
+    if(key == 'q') bindings[81] = cb;
+    if(key == 'right') bindings[39] = cb;
+    if(key == 'left') bindings[37] = cb;
+}
+keybind('s',toggleSpeakerNotes);
+keybind('q',toggleQuestions);
+keybind('right', function() {
+    navRight();
+    pubnub.publish({channel:config.channels.slides, message:{ dir:'right', index:cur, uuid:pubnub.getUUID()}});
+});
+keybind('left', function() {
+    navLeft();
+    pubnub.publish({channel:config.channels.slides, message:{ dir:'left', index:cur, uuid:pubnub.getUUID()}});
+});
 
-    if(e.code == 'ArrowRight') {
-        navRight();
-        pubnub.publish({channel:config.channels.slides, message:{ dir:'right', index:cur, uuid:pubnub.getUUID()}});
-    }
-    if(e.code == 'ArrowLeft')  {
-        navLeft();
-        pubnub.publish({channel:config.channels.slides, message:{ dir:'left', index:cur, uuid:pubnub.getUUID()}});
-    }
-    if(e.key == 's') toggleSpeakerNotes();
-    if(e.key == 'q') toggleQuestions();
+document.addEventListener('keydown',function(e) {
+    //skip events that didn't come from the body, so we don't mess with textareas and inputs
+    if(e.target.tagName.toLowerCase() !== 'body') return;
+    if(bindings[e.keyCode]) bindings[e.keyCode]();
 });
 
 function navToSlide(n){
