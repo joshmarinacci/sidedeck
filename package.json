@@ -20,6 +20,7 @@
     "@typopro/web-source-code-pro": "^3.4.9",
     "@typopro/web-source-sans-pro": "^3.4.9",
     "@typopro/web-source-serif-pro": "^3.4.9",
+    "hammerjs": "^2.0.8",
     "pubnub": "^4.2.3"
   }
 }

@@ -6,6 +6,7 @@
     <script src="node_modules/pubnub/dist/web/pubnub.min.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/highlight.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -136,6 +137,7 @@ function doMoreStuff(more) {
 
 <script src="scripts/utils.js" type="application/javascript"></script>
 <script src="scripts/code.js" type="application/javascript"></script>
+<script src="node_modules/hammerjs/hammer.js" type="application/javascript"></script>
 <script type="text/javascript">
     //highlight the page with code in it
     function style() {
@@ -143,6 +145,25 @@ function doMoreStuff(more) {
         hljs.highlightBlock(elem);
     }
     setTimeout(style,10);
+
+
+    try {
+        document.querySelectorAll("section").forEach(function(sec,i) {
+            var hammertime = new Hammer(sec);
+            hammertime.on('tap', function(ev) {
+                slides.navRight();
+            });
+            hammertime.on('swiperight', function (ev) {
+                slides.navLeft();
+            });
+            hammertime.on('swipeleft', function (ev) {
+                slides.navRight();
+            });
+        })
+    } catch (e) {
+        console.log(e);
+    }
+
 </script>
 </body>
 </html>
