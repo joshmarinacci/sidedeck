@@ -35,6 +35,13 @@ a {
     font-weight: 300;
 }
 
+
+button {
+    border: 1px solid black;
+    background-color: #888;
+    color: white;
+}
+
 footer {
     font-family: "TypoPRO Source Sans Pro";
     font-weight: 300;

@@ -18,7 +18,7 @@
 
 #questions-panel {
     position: absolute;
-    top: 0;
+    top: 10vh;
     bottom: 10vh;
     right: 0;
     border: 1px solid lightgrey;
