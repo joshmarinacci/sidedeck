@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        canvas { border: 1px solid black; }
+    </style>
+</head>
+<body>
+<h3>based on code from <a href="http://blog.jrheard.com/procedural-dungeon-generation-drunkards-walk-in-clojurescript">here</a></h3>
+
+<div class="hbox">
+    <input type="range" min="0" max="2000"  value="2000" id="range-slider">
+    <label id="range-value">2000</label>
+</div>
+
+<canvas id="canvas" width="500" height="400"/>
+
+<script type="text/javascript">
+    function $(selector) {
+        return document.querySelector(selector);
+    }
+
+    var can = document.getElementById('canvas');
+    var ctx = can.getContext('2d');
+    ctx.fillStyle = 'red';
+    ctx.fillRect(50,50,60,100);
+
+    var grid = [];
+    grid.width  = 50;
+    grid.height = 40;
+    for(var i=0; i<grid.width; i++) {
+        var arr = [];
+        for(var j=0; j<grid.height; j++) {
+            arr[j] = 1;
+        }
+        grid[i] = arr;
+    }
+    function setCell(pt,val) {
+        grid[pt.x][pt.y]= val;
+    }
+    function getCell(pt) {
+        return grid[pt.x][pt.y];
+    }
+
+    function randInt(min,max) {
+        return min + Math.floor(Math.random()*(max-min));
+    }
+    function pick(arr) {
+        var n = Math.floor(Math.random()*arr.length);
+        return arr[n];
+    }
+
+    var FILLED = 1;
+    var DUG = 0;
+
+    function walkDrunk() {
+        var count = 0;
+        var pt = {x:0, y:0};
+
+        var max = 2000;
+        function getAdjacent(pt) {
+            return [
+                {x:pt.x, y:pt.y-1},
+                {x:pt.x, y:pt.y+1},
+                {x:pt.x-1, y:pt.y},
+                {x:pt.x+1, y:pt.y}
+            ]
+        }
+        function nextWalk(pt, depth) {
+            count++;
+            //setCell(pt,DUG);
+            var res = [pt];
+
+            while(count < max) {
+                var cells = getAdjacent(pt);
+                cells = cells.filter(function (cell) {
+                    if(cell.x < 0) return false;
+                    if(cell.y < 0) return false;
+                    if(cell.x >= grid.width) return false;
+                    if(cell.y >= grid.height) return false;
+                    cell.val = getCell(cell);
+                    return true;
+                });
+                if(cells.length == 0) {
+                    console.log("no more available");
+                    return res;
+                }
+                var next = pick(cells);
+                res = res.concat(nextWalk(next,depth+1));
+            }
+            return res;
+        }
+        return nextWalk(pt,0);
+    }
+    var cells = walkDrunk();
+
+    function drawGrid(ctx, grid) {
+        var size = 5;
+        for(var i=0;i<grid.length; i++) {
+            var row = grid[i];
+            for(var j=0; j<row.length; j++) {
+                var cell = row[j];
+                ctx.fillStyle = (cell==DUG)?"white":"black";
+                ctx.fillRect(i*size,j*size,size,size);
+                ctx.strokeRect(i*size,j*size,size,size);
+            }
+        }
+    }
+
+    function renderPath(count) {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0,0,can.width, can.height);
+        var size = 10;
+        for(var i=0; i<count; i++) {
+            var cell = cells[i];
+            ctx.fillStyle = 'black';
+            ctx.fillRect(cell.x*size,cell.y*size,size,size);
+        }
+    }
+
+    renderPath(2000);
+
+    $("#range-slider").addEventListener('input', function (e) {
+        var val = $("#range-slider").value;
+        $("#range-value").innerHTML = ""+val;
+        renderPath(parseInt(val));
+    });
+
+</script>
+</body>
+</html>
