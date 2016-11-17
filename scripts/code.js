@@ -26,6 +26,7 @@ console.log("final cur = ", cur);
 
 
 var slides = {
+    funcs: {},
     findSelected : function(sections) {
         var found = null;
         sections.forEach((s,i) => {
@@ -69,20 +70,44 @@ var slides = {
     },
     navRight: function() {
         var sections = $("section");
+        this.performSlideFunctions(cur,"end");
         cur = Math.min(cur+1,sections.length);
+        this.performSlideFunctions(cur,"start");
         slides.resetStyles(sections);
         history.pushState({index:cur},null,'#'+cur);
     },
     navLeft:function() {
-        var sections = $("section")
+        var sections = $("section");
+        this.performSlideFunctions(cur,"end");
         cur = Math.max(0,cur-1);
+        this.performSlideFunctions(cur,"start");
         slides.resetStyles(sections);
         history.pushState({index:cur},null,'#'+cur);
     },
     navToSlide:function(n){
+        this.performSlideFunctions(cur,"end");
         cur = n;
+        this.performSlideFunctions(cur,"start");
         slides.resetStyles($("section"));
+    },
+    performSlideFunctions(cur,suffix) {
+        var slide = $("section")[cur];
+        if(slide.id) {
+            var funcs = this.funcs[slide.id];
+            if(funcs && funcs[suffix]) {
+                funcs[suffix]();
+            }
+        }
+    },
+    addSlideListener(id, funcs) {
+        var elem = document.getElementById(id);
+        if(!elem) {
+            console.log("could not find the slide with the id ",id);
+            return;
+        }
+        this.funcs[id] = funcs;
     }
+
 };
 
 var speakerView = {
@@ -185,6 +210,7 @@ utils.defer(function() {
     keybinder.keybind('q',questions.toggleQuestions);
     keybinder.setup();
     questions.setupChat();
+    slides.performSlideFunctions(cur,"start");
     slides.resetStyles($('section'));
     //turn on speaker mode
     if(config.mode === 'speaker') {

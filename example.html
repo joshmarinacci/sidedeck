@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="styles/styles.css">
     <script src="scripts/highlight.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="scripts/utils.js" type="application/javascript"></script>
+    <script src="scripts/code.js" type="application/javascript"></script>
+    <script src="node_modules/hammerjs/hammer.js" type="application/javascript"></script>
 </head>
 <body>
 
@@ -19,12 +22,22 @@
     <button id="questions-show">Questions</button>
 </footer>
 
-<section>
+<section id="firstSlide">
     <h1>My presentation</h1>
     <h2>this is some cool stuff</h2>
     <aside>
         these are some speaker notes
     </aside>
+    <script type="text/javascript">
+        slides.addSlideListener("firstSlide",{
+            start: function() {
+                console.log("the slide is starting");
+            },
+            end: function() {
+                console.log("the slide is ending");
+            }
+        });
+    </script>
 </section>
 
 <section class="split-v">
@@ -95,17 +108,23 @@ function doMoreStuff(more) {
 </section>
 
 <section id="myslide1">
-    <h1>page 7</h1>
-    <script type="text/javascriptx">
-        slides.on("preshow", 'myslide1', function() {
-            console.log("slide 7 is showing next");
-        })
-        slides.on("show", 'myslide1', function() {
-            console.log("slide 7 is showing now");
-        })
-        slides.on("postshow", 'myslide1', function() {
-            console.log("slide 7 is no longer showing");
-        })
+    <h1 id="myslide1-header">page 7</h1>
+    <script type="text/javascript">
+        var myslide_obj = { tick: 0};
+        function updateSlide7() {
+            myslide_obj.tick += 1;
+            var elem = utils.lookup("#myslide1-header");
+            elem.innerHTML = "count = " + myslide_obj.tick;
+        }
+        slides.addSlideListener('myslide1', {
+            start: function () {
+                if (myslide_obj.id) clearInterval(myslide_obj.id);
+                myslide_obj.id = setInterval(updateSlide7, 1000);
+            },
+            end: function () {
+                clearInterval(myslide_obj.id);
+            }
+        });
     </script>
 </section>
 
@@ -135,9 +154,6 @@ function doMoreStuff(more) {
     </div>
 </div>
 
-<script src="scripts/utils.js" type="application/javascript"></script>
-<script src="scripts/code.js" type="application/javascript"></script>
-<script src="node_modules/hammerjs/hammer.js" type="application/javascript"></script>
 <script type="text/javascript">
     //highlight the page with code in it
     function style() {
