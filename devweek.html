@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Excellent Presentation</title>
+    <script src="node_modules/pubnub/dist/web/pubnub.min.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="scripts/highlight.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="scripts/utils.js" type="application/javascript"></script>
+    <script src="scripts/code.js" type="application/javascript"></script>
+    <script src="node_modules/hammerjs/hammer.js" type="application/javascript"></script>
+</head>
+<body>
+
+    <footer>
+        <span>@joshmarinacci</span>
+        <span class="grow"></span>
+        <span>Serverless Chatbots</span>
+        <span class="grow"></span>
+        <span>PubNub</span>
+        <button id="questions-show">Questions</button>
+    </footer>
+
+  <section class="split-v">
+      <div>
+          <h1>Josh Marinacci</h1>
+          <h2>Head of Developer Evangelism</h2>
+      </div>
+      <div>
+          <h2>PubNub</h2>
+          pubnub logo
+      </div>
+
+    <aside>
+      I'm the head of developer evangelism at PubNub.
+      At PubNub we run a Data Stream Network. It lets people
+      conduct realtime communication with extremely high security
+      and extremely low latency.  We have a lot of customers doing
+      cutting edge things, so this gives me an inside seat at what
+      is coming next. And one of those things is serverless chatbots.
+    </aside>
+    </section>
+
+    <section>
+        <h1>Serverless Chatbots</h1>
+        <aside>
+            <p>You probably know what chatbots are, but maybe not serverless.
+            I'm not going to talk to you about *why* you should make a chat bot.</p>
+
+            <p> There are plenty
+            of other people at this conference who will explain the value you can get
+            from making a chatbot. They'll talk all about zero-install and high engagement.
+            For me it's simplyl that you have to go where the customers are. The customers
+            are in chat apps, so that's where we should be.</p>
+
+            <p>It's going to be right for some businesses and not for others. So I won't
+            talk about why you should build one. But I do want to talk to how about *how* you should build them.
+            </p>
+        </aside>
+    </section>
+
+    <section>
+        <ul>
+            <li>Realtime Infrastructure</li>
+            <li>Some level of Artificial Intelligence</li>
+        </ul>
+        <aside>
+            <p>When you make a chatbot you need some sort of realtime infrastructure.
+    A chatbot involves constant communication between the end user and
+    your bot, possibly with other platform proxies in the way, and possibly
+    with other webservices which provide the knowledge or actions that the chatbot needs.
+    So you need some realtime infrastructure to tie all this together with very low
+    latency and high security.
+    </p>
+
+            <p>The other thing you need is some level of Artificial Intelligence.
+        Some chatbots need full natural language processing. some need a backend
+        end with a rich neural net. Some just need a glorified phone tree.
+        It really depends on what you are doing.
+        </p>
+        </aside>
+    </section>
+
+    <section>
+        <h2>Your requirement, not your focus</h2>
+        <aside>But here's the thing. These two features
+            <b>are</b> your requirements but they <b>are not</b> your focus.
+            Imagine you are building a physical robot. Electricity is a requirement,
+            but it's not your focus. You aren't going to invent
+            a new battery or a new charger circuit. That's not the problem
+            you are actually trying to solve. It's the same with chatbots.
+            It's Infrastructure and AI are required but they are not your focus.
+        </aside>
+    </section>
+
+    <section>
+        <h2>Don't build your own infrastructure</h2>
+        <h2>Don't build your own AI</h2>
+        <aside>
+            So please, if you remember nothing else from this talk I want you to remember
+            these two things.
+        </aside>
+    </section>
+
+
+
+<section>
+    image of chat window
+    <aside>
+        In the future chatbots will continue to evolve. they will be able to handle
+        more tasks. they won't be limited to chat. they might not be in a chat
+        interface, but voice extensions of your home voice bot. like the amazon
+        alexa. This is an intersting transition, but as we go through this trasition
+        one thing will remain: don't build your own AI and don't build your own
+        infrastructure. Focus on the actual problem you are trying to solve. There are
+        way too many useless chatbots out there that use clever techndology, but
+        don't solve an actual problem. Focus on what you are trying to solve, not
+        the underlying tech.
+
+    </aside>
+</section>
+
+
+<section>
+    image of amazon alexa
+    <aside>
+        In the future chatbots will continue to evolve. they will be able to handle
+        more tasks. they won't be limited to chat. they might not be in a chat
+        interface, but voice extensions of your home voice bot. like the amazon
+        alexa. This is an intersting transition, but as we go through this trasition
+        one thing will remain: don't build your own AI and don't build your own
+        infrastructure. Focus on the actual problem you are trying to solve. There are
+        way too many useless chatbots out there that use clever techndology, but
+        don't solve an actual problem. Focus on what you are trying to solve, not
+        the underlying tech.
+    </aside>
+</section>
+
+<section>
+    <h1>Demo Time</h1>
+    <aside>
+        so today I'm going to show you how to build a simple chatbot
+        we are going to use serverless infrastructure and some 3rd party
+        services. But before we get into how to build them. let me show them to you.
+    </aside>
+</section>
+
+<section>
+    <h1>rewriting demo</h1>
+    <div style="border: 1px solid red">
+        your words aren't cool enough. there i fixed it.
+        [adds unicorns and heart emoji]
+    </div>
+    <aside>this is a simple chatbot which fixes what you type in.</aside>
+</section>
+
+<section>
+    <h1>Cloudinary</h1>
+    <aside>
+        okay, that was fun but useless. here's something that does
+        some work. There's this cool company called Cloudinary
+        that makes an image manipulation service. It's mainly
+        meant for resizing and ajdusting images for your blog. but with
+        a little clever work i built a chatbot that manipulates
+        iamges for you.
+    </aside>
+</section>
+
+<section>
+    <h1>image chat</h1>
+    <aside>
+        now the really cool thing about this is that it's a group chat.
+        multiple people can collaborate on it at once. each giving
+        commands to the bot to adjust the image until the group likes
+        what it sees.
+    </aside>
+</section>
+
+<section>
+    <h1>MR ROCKBOT</h1>
+    <aside>This is my favorite one. MR ROCKBOT is a chat bot who understands
+        only rock related facts and really terrible rock jokes.
+        let's try it out.
+
+            show some facts
+            show some jokes
+
+        this is a chat app with a knowledge base of facts from wikipedia
+        and gifs from giphy. It also uses IBM Watson to process questions
+        as well as translate from french to english.
+
+        ask tell me a joke in french.
+        i'm sure it's hilarious if I spoke french.
+    </aside>
+</section>
+
+<section>
+    diagram of emoji bot
+    <aside>Okay. all of these were built with the same basic
+        architecture.
+        the phone talks to the realtime network provider. in this case
+        PubNub.
+    </aside>
+</section>
+
+<section>
+    diagram of cloudinary bot
+</section>
+
+<section>
+    diagram of mrrockbot
+</section>
+
+
+<section>
+    <h1>What is <i>Serverless</i> anyway?</h1>
+
+    <aside>
+        Serverless provider
+
+        this is a serverless platform, not a cloud provider. the different
+        is that you aren't provisioining a server, even a virtual one.
+        there is no administration. you are working at the level of functions
+        that you put into the network. also, you aren't
+        just switching one providers cloud server for another. this code runs in the network.
+        it's more like a CDN. the message goes from the phone to some place on the
+        edge. it goes to whatever part of the network is closest to the end user.
+
+        it's serverless because there isn't one server or even a group of servers. undereath
+        is computing infrastructure around the globe acting as one unit, always
+        putting computation as close as possible to the end user for the lowest
+        latency and greatest security.
+
+        the serverless provider then talks to an service for the AI. it may
+        also talk to other services for other parts of the chatbot. the important
+        thing is that provider in the middle has the controlling computation and stores
+        all the state. Each of these providers are simple microservices that do one thing
+        well and are as stateless as possible, making them easier to build and more reliable.
+
+
+        Further more, as your chatbot becomes more popular
+        which we hope it well, you don't have to worry about scaling. the infrastructure
+        scales for you. Most of the providers in this space have usage based pricing so
+        your costs only go up when your revenue does. No cliffs to worry about. Scaling
+        becomes a non-issue, so you can focus on what you are trying to actually do.
+
+    </aside>
+
+</section>
+
+<section>
+    <aside>
+        now lets dive inot some code. this is what makes the heartbot work.
+
+        on the actual client is a little bit of html to take input an send it to the network,
+        and wait for a response and draw it. the real work is in the serverless network.
+
+        at pubnub we calls these BLOCKS. they are event handlers that run promised based
+        modern javascript whenever a message comes in. the code is actually run somewhere
+        in the network cloest to the end user. but as a devleoper I don't have to think about
+        that. I just write some javascript. Here's what it looks like.
+    </aside>
+
+    code snippet from the block.
+</section>
+
+<section>
+    diagram again
+    <aside>
+        Here is the image bot. This one doesn't use a full NLP solution,
+        just some code I put together that looks for commands after
+        the trigger word 'please'.
+    </aside>
+</section>
+
+<section>
+    code for command processing
+    <aside>
+        when the user types in a message, it comes to the block. the block
+    sends it to a stateless webservice I wrote which turns the text into
+    a command, or returns false if it didn't see the stopwords.
+    </aside>
+</section>
+
+<section>
+    code for cloudinary and return
+    <aside>
+        then it generates a custom cloudinary URL and finishes
+        the publish.  It doesn't matter how many people are listening
+        to this channel. They will all be able to interact with the bot
+        and see what the other is doing just by listining to the same channel.
+        if they want their own conversation then they can just use different channels.
+        it's all the same code.
+    </aside>
+</section>
+
+
+
+<section>
+    Mr rockbot diagram.
+</section>
+
+<section>
+    <h1>IBM Watson Text Alchemy API</h1>
+    <aside>
+    Mr rockbot is the most complicated because he uses several services.
+    In my original version I used IBM Alchemy language API to look at
+    the input text. it pulls out entities and intents. Unfortunately this API
+    is really meant for looking at larger documents, not tiny snippets of text.
+    </aside>
+</section>
+
+<section>
+    <h1>IBM Watson Conversations</h1>
+    <aside>
+        However, IBM recently introduced a new api specifically for conversational
+        interactions called, appropriately enough: Conversations.
+        With conversations you actually train the system by giving it examples
+        of the kinds of things you are looking for.
+    </aside>
+</section>
+
+<section>
+    diagram of training screen
+    <aside>
+        First you create 'intents.' These are the things the user could
+        ask the chatbot to do for it. For example, if this was a home
+        automation bot you might use an intent like 'turn on'.
+
+    </aside>
+</section>
+
+<section>
+    diagram of training screen
+    <aside>
+        Next you create entities. These are things the user could ask about, or are the
+        target of an intent. For example: in a home automation bot you might
+        use an entity like 'lights' or 'door'. You can also specify synonyms
+        so that it can recognize many forms of the request.
+    </aside>
+</section>
+
+<section>
+    diagram of training screen
+    <aside>
+        Finally you can create dialogs. These are workflows that the user
+        can go through. This lets you specify what the bot actually
+        says to the end user in different circumstances. If you arlready
+        have a knowledgebase of facts and responses then you can skip this part
+        and just use the intents and entities.
+    </aside>
+</section>
+
+<section>
+    Code for the block. point out the HTTP POST and KV store
+    <aside>After you teach Watson about your problem domain you can call it
+        from your serverless code using a simple HTTP POST.
+        It's important to note that Conversations is a stateless API.
+        In order to udnerstand the context of a conversation you have to provide
+        this context on each request using a context structure.  I'm storing
+        this in the serverless platform. But remember that this code will always
+        be run on the edge nearest to the end user, and that user might move.
+        So i store this context in our Key Value store which is eventually consistent.
+        If the user moves to another part of the network the context will follow them.
+    </aside>
+</section>
+
+
+<section class="split-v">
+    <div>
+        <h1>In Conclusion</h1>
+        <ul>
+            <li>Don't build your own realtime serverless infrastructure</li>
+            <li>Don't build your own AI</li>
+        </ul>
+    </div>
+    <div>
+        <h2>Questions</h2>
+        <div>
+            <p><b>@joshmarinacci</b></p>
+            <p><b>josh@pubnub.com</b></p>
+        </div>
+    </div>
+    <aside>
+        Today I've shown you how to build three different chatbots using
+        serverless infrastructure and AI services. At no point did I have
+        to spin up a server or write multi-threaded code. That's the magic of serverless.
+        I also didn't have to have a PHd in Machine Learning to build these.
+        That's the magic of AI services.
+        So please, don't do this.
+        tahnk you.
+    </aside>
+</section>
+
+
+
+
+    <!--
+
+    * describe basic arch with serverless (BLOCKS) in the middle
+    * build simple responder with node service
+        * only a single service. why go through serverless?
+        * keeps client isolated from service
+        * service is stateless, state kept in the platform. makes code simpler.
+    * describe arch for cloudinary system
+        * hand crafted NLP system.
+            * works in this limited domain
+        * chat that's not just about text
+        * service is stateless. state kept in platform. makes code simpler
+    * describe arch for mr rockbot
+        * started with hand crafted. didn't scale. upgrade to Watson Conversation API
+        * show screenshot of dialog in GUI builder
+    * enhanced  Mr Rockbot
+        * once serverless arch, super easy to add extra functionality
+            * ex: what's the weather, attach to another service
+            * ex: language translation
+        * add translation and language detection
+    * summary:
+        * PubNub BLOCKS powered all of these demos.
+        * Don't limit your conception of chatbots to text. audio. image editing. games.
+        * Go serverless. low latency, highly scalable.
+            * even while you are just experimenting, serverless is easier
+        * Don't build your own AI. tons of amazing services out there, costs scale with usage.
+
+
+    next steps
+    * connect to the watson conversation I made through a node cli app
+    * connect to the waston conversation I made through a block. make a new block that I can call from the simple chat.
+    * write new slide deck from scratch with the new content. use my new presentation system so I can put the demos inline.
+    * flesh out watson conversation to support everything of mr rockbot
+
+
+    The first is called Building a Serverless Chatbot with On-Demand AI Webservices, where Josh will walk attendees step-by-step on harnessing the power of serverless to build lightweight and powerful chatbots for a wide variety of industries and verticals. (Monday, February 13, 3pm) The second is Serverless Chatbots with a Programmable Network, where Josh will introduce and walk through a number of chatbot APIs and services to build smart, interactive chatbots. (Tuesday, February 14, 4pm)
+
+    they are the same talk, but first is 50 min and the second is 30 min
+
+    for the shorter one don't go through the code. just screenshots and talk high level arch.
+
+
+
+
+
+
+    go through
+
+    -->
+
+    <div id="speaker-view" class="hbox">
+        <div class="vbox grow">
+            <div class="grow panel">currnet slide</div>
+            <div class="grow panel">next slide</div>
+        </div>
+        <div class="vbox grow">
+            <div class="grow panel" id="speaker-notes">my notes</div>
+            <div class="grow panel" id="speaker-questions">questions</div>
+        </div>
+    </div>
+
+    <div id="questions-panel" class="vbox">
+        <div class="grow scroll" id="questions-view-wrapper">
+            <div id="questions-view"></div>
+        </div>
+        <div id="questions-ask" class="hbox">
+            <input  id="question-field" type="text" class="grow">
+            <button id="question-button">send</button>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+    //highlight the page with code in it
+    function style() {
+        var elem = document.getElementById("slide1");
+        hljs.highlightBlock(elem);
+    }
+    // setTimeout(style,10);
+
+
+    try {
+        document.querySelectorAll("section").forEach(function(sec,i) {
+            var hammertime = new Hammer(sec);
+            hammertime.on('tap', function(ev) {
+                slides.navRight();
+            });
+            hammertime.on('swiperight', function (ev) {
+                slides.navLeft();
+            });
+            hammertime.on('swipeleft', function (ev) {
+                slides.navRight();
+            });
+        })
+    } catch (e) {
+        console.log(e);
+    }
+
+</script>
+
+</body>
+</html>
