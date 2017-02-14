@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.0.8.js"></script>
+    <meta charset="UTF-8">
+    <title>Simple Chat</title>
+
+    <style type="text/css">
+        .vbox {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+        }
+        :focus {
+            outline: none;
+        }
+        .hbox {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+        }
+        .fill {
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+        }
+        .grow {  flex: 1;   }
+        .scroll {
+            overflow-y: scroll;
+        }
+        body, input, button { font-size: 100%; }
+        body {
+            font-size: 300%;
+        }
+
+        #history { border: 1px solid black;}
+        #history, #message { border: 1px solid black;}
+
+
+    </style>
+</head>
+<body>
+
+<div class="fill vbox">
+    <div id="history" class="grow scroll"></div>
+    <input id="message" value="I am happy."/>
+</div>
+
+<script type="text/javascript">
+    // a simple JQuery like function to get elements by ID
+    function $(id) { return document.getElementById(id);  }
+
+    //configure pubnub
+    var pubnub = new PubNub({
+        subscribeKey:"sub-c-9198529e-a2cd-11e6-9fcd-0619f8945a4f",
+        publishKey:"pub-c-7d74808f-de74-4272-9f7f-5b0b6cea9a4a"
+    });
+
+    //add listener for message events
+    pubnub.addListener({
+        message: function(evt) {
+            console.log("got the message",evt.message);
+            $('history').innerHTML += "<p>"+evt.message.text+"</p>"
+            $('history').scrollTop = $('history').scrollHeight;
+        }
+    });
+    //subscribe to channel
+    pubnub.subscribe({channels:['heartbot']});
+
+    //send the message
+    $('message').addEventListener('keypress',function(evt) {
+        if(evt.keyCode == 13) { //enter key
+            pubnub.publish({
+                channel:'heartbot',
+                message:{text: $('message').value}
+            });
+            $('message').value = '';
+            $('message').focus();
+        }
+    });
+    $('message').focus();
+</script>
+</body>
+</html>

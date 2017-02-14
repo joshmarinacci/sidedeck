@@ -139,13 +139,13 @@ latency and high security.
 </section>
 
 <section>
-    <h1>Fixer</h1>
+    <h1>HeartBot</h1>
     <iframe
-            style="border: 1px solid orange; width:60vw; height:60vh;"
-            src="../chatbot-webinar/simple.html"
+            style="border: 1px solid orange; width:80vw; height:70vh;"
+            src="heartbot.html"
     ></iframe>
-    <aside>this is a simple chatbot which fixes what you type in.
-        [adds unicorns and heart emoji]
+    <aside>this is a simple chatbot which fixes what you type in. by making
+        in heartier.
     </aside>
 </section>
 
@@ -162,10 +162,10 @@ latency and high security.
 </section>
 
 <section>
-    <h1>Image Bot</h1>
+    <h1>ImageBot</h1>
     <iframe
             style="border: 1px solid orange; width:90vw; height:70vh;"
-            src="http://joshondesign.com/p/apps/cloudinary/"
+            src="../../cloudinary-react-demo/build/index.html"
     ></iframe>
     <aside>
         <p>now the really cool thing about this is that it's a group chat.
@@ -320,10 +320,22 @@ latency and high security.
 
 <section>
     <h2>HeartBot Code</h2>
-    <pre id='slide1' class="code javascript">
-//some cool code here
-//and then some more cool code goes right here
-    </pre>
+<pre class="code javascript">
+export default (request) => {
+    var txt = request.message.text;
+    txt = txt.replace(/poop/g,"\uD83D\uDCA9");
+    txt = txt.replace(/crap/g,"\uD83D\uDCA9");
+    txt = txt.replace(/love/g,"\uD83D\uDE0D");
+    txt = txt.replace(/heart/g,"\uD83D\uDC9C");
+    txt = txt.replace(/sad/g,"\uD83D\uDE1E");
+    txt = txt.replace(/happy/g,"\uD83D\uDE04");
+
+    request.message.text = "Your message isn't hearty enough!"
+        +" There I fixed it: &lt;br/&gt;"
+        + txt;
+    return request.ok(); // Return a promise when you're done
+}
+</pre>
 
     <aside>
         now lets dive into some code. this is what makes the emoji bot work.
@@ -532,41 +544,33 @@ return xhr.fetch(url).then((x)=>{
 <section>
     <h2>Use Conversations API</h2>
 <pre class="code javascript">
-export default (request) => {
-    var url = creds.url+'/v1/workspaces/'+creds.workspaceID+'/message?version=2016-09-20';
+var url = creds.url+'/v1/workspaces/'+creds.workspaceID+'/message?version=2016-09-20';
 
-    var payload = {
-        input: {
-            text: request.message.text
-        },
-    }
+var payload = { input: {  text: request.message.text   } }
 
-    return kvstore.get("context").then((ctx) => {
-        if(ctx) payload.context = ctx;
+return kvstore.get("context").then((ctx) => {
+    if(ctx) payload.context = ctx;
 
-        const http_options = {
-            method:'POST',
-            body: JSON.stringify(payload)
-        }
+    const http_options = { method:'POST', body: JSON.stringify(payload) }
 
-        return xhr.fetch(url, http_options).then((x)=>{
-            var body = JSON.parse(x.body);
-            return kvstore.set("context",body.context).then(()=>{
-                request.message.text = body.output.text[0];
-                request.message.watson = body;
-                return request.ok();
-            });
-        }).catch((e)=>{
-            console.log("ERROR");
+    return xhr.fetch(url, http_options).then((x)=>{
+        var body = JSON.parse(x.body);
+        return kvstore.set("context",body.context).then(()=>{
+            request.message.text = body.output.text[0];
+            request.message.watson = body;
             return request.ok();
         });
+    }).catch((e)=>{
+        console.log("ERROR");
+        return request.ok();
     });
-}
+});
+
 </pre>
     <aside>After you teach Watson about your problem domain you can call it
         from your serverless code using a simple HTTP POST.
         It's important to note that Conversations is a stateless API.
-        In order to udnerstand the context of a conversation you have to provide
+        In order to understand the context of a conversation you have to provide
         this context on each request using a context structure.  I'm storing
         this in the serverless platform. But remember that this code will always
         be run on the edge nearest to the end user, and that user might move.

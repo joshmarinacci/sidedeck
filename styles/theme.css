@@ -86,13 +86,14 @@ blockquote cite:before {
 pre {
     border: 1px solid black;
     text-align: left;
-    font-size: 140%;
+    font-size: 200%;
 }
 .hljs {
     background-color: #fdf6e3;
     border-radius: 1em;
     padding: 2em;
     max-width: 85vw;
+    font-size: 200%;
 }
 
 
