@@ -88,7 +88,15 @@ pre {
     text-align: left;
     font-size: 140%;
 }
+.hljs {
+    background-color: #fdf6e3;
+    border-radius: 1em;
+    padding: 2em;
+    max-width: 85vw;
+}
 
+
+/*
 .hljs {
     border: 3px solid brown;
     background-color: lightgoldenrodyellow;
@@ -136,7 +144,7 @@ pre {
 
 
 
-
+*/
 
 
 
