@@ -1,9 +1,30 @@
 @media print {
+    @page  {
+        size: landscape;
+    }
+    body {
+        width: 100%;
+        height: 100%;
+        padding:0;
+        margin:0;
+        border: 0px solid black;
+        font-size: 100%;
+    }
+
     section {
         position: relative;
+        top:auto;
+        bottom:auto;
+        left:auto;
+        right:auto;
         transform: none;
         border: 1px solid black;
         page-break-before: always;
+        page-break-after: always;
+        width: 100%;
+        height: 100%;
+        min-height: 30em;
+        max-height: 60em;
     }
 
     .before, .prev, .active, .next, .after {
@@ -21,6 +42,23 @@
     }
     body {
         overflow: auto;
+    }
+
+    img {
+        max-height: 30em;
+    }
+
+    aside {
+        font-size: 100%;
+        border: 0px solid green;
+        position: absolute !important;
+        margin:0;
+        padding:0;
+        height: 50%;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: -55%;
     }
 
 }
