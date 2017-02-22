@@ -14,8 +14,8 @@ var pubnub = new PubNub({
 
 var config = utils.params({mode:'editor', index:0});
 config.channels = {
-    slides:'presso-slides',
-    questions:'presso-questions'
+    slides:'es6-slides',
+    questions:'es6-questions'
 };
 console.log("config = ",config);
 var cur = config.index;
