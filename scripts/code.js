@@ -68,10 +68,10 @@ var slides = {
             }
         }
     },
-    navRight: function() {
+    navStart: function() {
         var sections = $("section");
         this.performSlideFunctions(cur,"end");
-        cur = Math.min(cur+1,sections.length);
+        cur = 0;//Math.max(0,cur-1);
         this.performSlideFunctions(cur,"start");
         slides.resetStyles(sections);
         history.pushState({index:cur},null,'#'+cur);
@@ -80,6 +80,22 @@ var slides = {
         var sections = $("section");
         this.performSlideFunctions(cur,"end");
         cur = Math.max(0,cur-1);
+        this.performSlideFunctions(cur,"start");
+        slides.resetStyles(sections);
+        history.pushState({index:cur},null,'#'+cur);
+    },
+    navRight: function() {
+        var sections = $("section");
+        this.performSlideFunctions(cur,"end");
+        cur = Math.min(cur+1,sections.length-1);
+        this.performSlideFunctions(cur,"start");
+        slides.resetStyles(sections);
+        history.pushState({index:cur},null,'#'+cur);
+    },
+    navEnd: function() {
+        var sections = $("section");
+        this.performSlideFunctions(cur,"end");
+        cur = sections.length -1;
         this.performSlideFunctions(cur,"start");
         slides.resetStyles(sections);
         history.pushState({index:cur},null,'#'+cur);
@@ -187,7 +203,7 @@ var questions = {
         $('#question-field').addEventListener('keypress',utils.onEnter(questions.sendQuestion));
         $("#questions-show").addEventListener('click',questions.toggleQuestions);
     }
-};
+}
 
 
 pubnub.addListener({
@@ -216,4 +232,16 @@ utils.defer(function() {
     if(config.mode === 'speaker') {
         speakerView.turnOn();
     }
+    $("#to-start").addEventListener("click",function(){
+        slides.navStart();
+    });
+    $("#to-left").addEventListener("click",function(){
+        slides.navLeft();
+    });
+    $("#to-right").addEventListener("click",function(){
+        slides.navRight();
+    });
+    $("#to-end").addEventListener("click",function(){
+        slides.navEnd();
+    });
 });
