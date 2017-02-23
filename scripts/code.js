@@ -12,7 +12,7 @@ var pubnub = new PubNub({
 
 
 
-var config = utils.params({mode:'editor', index:0});
+var config = utils.params({mode:'view', index:0});
 config.channels = {
     slides:'es6-slides',
     questions:'es6-questions'
@@ -168,13 +168,18 @@ var keybinder = {
     }
 };
 
+function sendEvent(payload) {
+    if(config.mode !== 'edit') return;
+    pubnub.publish({channel:config.channels.slides, message:payload});
+
+}
 keybinder.keybind('right', function() {
     slides.navRight();
-    pubnub.publish({channel:config.channels.slides, message:{ dir:'right', index:cur, uuid:pubnub.getUUID()}});
+    sendEvent({ dir:'right', index:cur, uuid:pubnub.getUUID()});
 });
 keybinder.keybind('left', function() {
     slides.navLeft();
-    pubnub.publish({channel:config.channels.slides, message:{ dir:'left', index:cur, uuid:pubnub.getUUID()}});
+    sendEvent({ dir:'left', index:cur, uuid:pubnub.getUUID()});
 });
 
 var questions = {
