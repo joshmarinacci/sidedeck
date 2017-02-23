@@ -31,18 +31,9 @@
     </footer>
 
     <section>
-        <h1>My presentation</h1>
-        <h2>this is some cool stuff</h2>
-        <aside>
-            these are some speaker notes
-        </aside>
-    </section>
-
-
-    <section>
-        <h1>Welcome</h1>
-        <h3>Josh, Head of Dev Rel</h3>
-        <h3>josh@pubnub.com</h3>
+        <h1>ES6: The Good Parts</h1>
+        <h2>josh@pubnub.com</h2>
+        <h2>Head of Dev Rel</h2>
         <aside>
             * Welcome
                 * I'm josh head of developer relations at PubNub.
@@ -62,17 +53,30 @@
         </ul>
 
         <aside>
-                * JavaScript has had many versions over the years, but overall the evolution was slow. More changes have happened in the past two years than in the previous twenty.
-                * ES 6 stands for EcmaScript 6. It's also called EcmaScript 2015, or ES 2015.  These are all different names for the 'new Javascript'.
-                * I'm not entirely sure *why* JS has changed so much recently, but it seems to be because the owners of the major JavaScript engines have finally become interested in pushing the language forward. Also, the advent of transpilers have made it possible to use new language features *before* they are built into the browsers. I'll talk a bit more about transpilers in a moment.
+                * JavaScript has had many versions over the years, but overall
+                the evolution was slow until recently. More changes have happened in the past
+                two years than in the previous twenty.
+                * ES 6 stands for EcmaScript 6. It's also called EcmaScript 2015,
+                or ES 2015.  These are all different names for the 'new Javascript'.
+                * I'm not entirely sure *why* JS has changed so much recently,
+                but it seems to be because the owners of the major JavaScript engines
+                have finally become interested in pushing the language forward.
+                Also, the advent of transpilers have made it possible to use new
+                language features *before* they are built into the browsers.
+                I'll talk a bit more about transpilers in a moment.
         </aside>
     </section>
 
     <section>
         <h1>Why ES6 matters</h1>
         <aside>
-        * JS matters because it's the fabric of the web, and increasingly used for server side apps with Node, and mobile and desktop apps with Cordova, React Native, and Electron. In short: JS is everywhere. So it matters that we push it forward. Languages which don't evolve start to die.
-        * The other reason to make JS better is simply that it's awesome if JS gets better. our code can improve. our apps can have fewer bugs. And some of these features enable the runtimes to actually run code faster.
+        JS matters because it's the fabric of the web, and increasingly used
+        for server side apps with Node, and mobile and desktop apps with Cordova,
+        React Native, and Electron. In short: JS is everywhere. So it matters
+        that we push it forward. Languages which don't evolve start to die.
+        The other reason to make JS better is simply that it's awesome if JS
+        gets better. Our code can improve. our apps can have fewer bugs. And
+        some of these features enable the runtimes to actually run code faster.
         </aside>
     </section>
 
@@ -147,10 +151,10 @@ VARS.foo = 42; // now I have a constant
         <pre>
 function badCode() {
     if(foo) {
-        var bar = 5;
+        var x = 5;
     }
     if(bar) {
-        console.log(bar);
+        console.log(x);
     }
 }
         </pre>
@@ -207,15 +211,13 @@ console.log(i);
 
     <section>
         <h1><code>const</code></h1>
-        <pre class='javascript'>
-function test() {
+        <pre class='javascript'>function test() {
     const foo = 'bar';
     foo = 'baz'; //error
-}
-        </pre>
+}</pre>
         <aside>
-            * const does exactly what you the name suggests. it makes a real
-            constant. if you try to set the constant you'll get an error.
+            <b>const</b> does exactly what the name suggests. It makes a real
+            constant. If you try to set the constant you'll get an error.
             even better, code linting systems can detect this kind of bug at
             compile time now, so you can find bugs earlier at development
             time rather than in production.
@@ -224,54 +226,52 @@ function test() {
 
     <section>
         <h1><code>let</code></h1>
-        <pre>
-function goodCode() {
+        <pre>function goodCode() {
     if(foo) {
-        let bar = 5;
+        let x = 5;
     }
     if(bar) {
-        console.log(bar); //error
+        console.log(x); //error
     }
 }        </pre>
         <aside>
-            let is just like var, it's a way to create variables, but it's
+            <b>let</b> is just like <b>var</b>, it's a way to create variables, but it's
             scoped by block instead of function. now it does what we expect.
         </aside>
     </section>
 
     <section>
         <h1><code>let</code></h1>
-        <pre>
-function goodCode() {
+        <pre>function goodCode() {
     for(let i=0; i&lt;5; i++) {
         console.log(i);
     }
     console.log(i); //error
-}        </pre>
+}</pre>
         <aside>
-            look at this for loop, now the i variable is restricted to the
-            for loop. there is no way it can be used outside accidentally.
-            also, let isn't hoisted, so all of those magic moving variables
+            Look at this <b>for</b> loop, now the <b>i</b> variable is restricted to the
+            <b>for</b> loop. there is no way it can be used outside accidentally.
+            Also, <b>let</b> isn't hoisted, so all of those magic moving variables
             go away.
         </aside>
     </section>
 
     <section>
-        <h1>Super Strings</h1>
-        <pre>
-var q  = 'foo';
+        <h1>Template Literals: Super Strings</h1>
+        <pre>var q  = 'foo';
 var qq = "foo";
 
 var bq = `foo`;
 
 var qq = "Sally sells \"sea shells\"";
-var bq = `Sally sells "sea shells"`;        </pre>
+var bq = `Sally sells "sea shells"`;</pre>
         <aside>
-            <p>javascript es6 introduces a new type of string. you use it just
+            <p>ES6 introduces a new type of string called Template Literals. I
+                prefer to call them super strings. You use it just
             like a regular string, but instead of using single or double quotes,
             you use the back quote.</p>
-            <p>so far so good, but nothing is different.
-            it does have an advantage of when you need to use double or
+            <p>So far so good, but nothing is very different.
+            It does have an advantage of when you need to use double or
             single quotes inside of a string you don't need to escape them anymore.
             but this new string does some other stuff too.</p>
         </aside>
@@ -279,43 +279,38 @@ var bq = `Sally sells "sea shells"`;        </pre>
 
     <section>
         <h1>Multi-line Strings</h1>
-        <pre>
-var qq = "this is a very long"
+        <pre>var qq = "this is a very long"
     + " piece of text that goes over several lines"
     + " and would require silly hacks";
 
 var bq = `this is a very long
     piece of text that goes over several lines
-    and would require silly hacks`;
-        </pre>
+    and would require silly hacks`;</pre>
         <aside>We finally have mulit-line strings.
-            need to quote several lines of something? you don't have to
-            escape newlines or do join tricks anymore. just put in the newlines
-            directly and it works.
-        </aside>
+            Need to quote several lines of something? You don't have to
+            escape newlines or do join tricks anymore. Just put in the newlines
+            directly and it works.</aside>
     </section>
 
     <section>
         <h1>Template Strings</h1>
-        <pre>
-var name = "Alice";
+        <pre>var name = "Alice";
 var greeting = `Good morning ${name}`;
 var amount = 5;
 var price = 3;
-var sales = `That costs ${amount*price} dollars`;        </pre>
+var sales = `That costs ${amount*price} dollars`;</pre>
         <aside>
-            multiline support makes it great for doing templates.
-            which is where another new feature comes in, expression escaping.
-            within a super string you can put ${} and anything inside the brackets
-            can be any javascript expression. this is much cleaner than
+            Multiline support makes it great for doing templates.
+            Which is where another new feature comes in, expression escaping.
+            Within a super string you can put <b>${}</b> and anything inside the brackets
+            can be any Javascript expression. This is much cleaner than
             double escaping your quotes, and it makes templates easier to
             build.
         </aside>
     </section>
     <section>
         <h1>HTML Templates</h1>
-        <pre>
-var template = `
+        <pre>var template = `
   &lt;div&gt;
       &lt;h3&gt;Good morning ${name}&lt;/h3&gt;
       &lt;p&gt;
@@ -324,10 +319,9 @@ var template = `
           dollars.
       &lt;/p&gt;
   &lt;/div&gt;
-`
-        </pre>
+`</pre>
         <aside>
-            here's a more complex example
+            Here's a more complex example.
         </aside>
     </section>
 
@@ -335,7 +329,7 @@ var template = `
     <section>
         <h1>Arrow Functions</h1>
         <aside>
-            * arrow functions are a different syntax for regular
+            Arrow functions are a different syntax for regular
             functions. they let you write the same code in a more
             compact way, along with one very important difference.
             the 'this' variable means something different. lets' look at some code.
@@ -344,14 +338,12 @@ var template = `
 
     <section>
         <h2>Good</h2>
-        <pre>
-var output = [];
+        <pre>var output = [];
 for(var i=0; i&lt;input.length; i++) {
     output[i] = input[i] * 2;
-}
-        </pre>
+}</pre>
         <aside>
-            * suppose you want to loop over an array to double the values within it,
+            suppose you want to loop over an array to double the values within it,
             producing a new array. you could do it this way with a for loop,
             but that creates extra variables and it can be easy to accidentially
             break early or get the index wrong. plus it's a lot of extra typing.
@@ -360,11 +352,9 @@ for(var i=0; i&lt;input.length; i++) {
 
     <section>
         <h2>Better</h2>
-        <pre>
-var output = input.map(function(x) {
+        <pre>var output = input.map(function(x) {
     return x * 2;
-});
-        </pre>
+});</pre>
         <aside>
             Javascript arrays have a function called map which calls a
             function on every element to generate a new element,
@@ -378,9 +368,7 @@ var output = input.map(function(x) {
 
     <section>
         <h2>Best</h2>
-        <pre>
-var output = input.map((x)=>x*2);
-        </pre>
+        <pre>var output = input.map((x)=>x*2);</pre>
         <aside>
             let me explain what's happening.
         </aside>
@@ -388,14 +376,12 @@ var output = input.map((x)=>x*2);
 
     <section>
         <h1>Arrow Functions</h1>
-        <pre>
-function (x) {
+        <pre>function (x) {
     return x * 2;
-}        </pre>
-        <pre>
-(x) => {
+}</pre>
+        <pre>(x) => {
     return x * 2;
-}        </pre>
+}</pre>
         <aside>
             arrow functions let us write the same thing smaller.
         </aside>
@@ -403,8 +389,7 @@ function (x) {
 
     <section>
         <h1>Arrow Functions</h1>
-        <pre>
-(x) => { return x * 2; }</pre>
+        <pre>(x) => { return x * 2; }</pre>
         <aside>
             but we can make it even shorter. let's remove the whitespace. that's better [code].
         </aside>
@@ -412,13 +397,10 @@ function (x) {
 
     <section>
         <h1>Arrow Functions</h1>
-        <pre>
-(x) => x * 2</pre>
-<pre>
-var output = input.map((x)=>x*2);
-</pre>
+        <pre>(x) => x * 2</pre>
+        <pre>var output = input.map((x)=>x*2);</pre>
         <aside>
-            but we can make it even shorter. we can remove the return and the
+            But we can make it even shorter. We can remove the return and the
             braces and semicolon, then we get a tiny one line expression
             which automatically returns it's value. that's so much cleaner.
         </aside>
@@ -426,18 +408,16 @@ var output = input.map((x)=>x*2);
 
     <section>
         <h1>The curse of <code>this</code></h1>
-        <pre>
-            function App() {
-                this.clicked = false;
+        <pre>function App() {
+    this.clicked = false;
 
-                var button = document.getElementById('button');
-                button.addEventListener('click', function(evt) {
-                    this.clicked = true; //won't do what you think
-                });
-            }
-        </pre>
+    var button = document.getElementById('button');
+    button.addEventListener('click', function(evt) {
+        this.clicked = true; //won't do what you think
+    });
+}</pre>
         <aside>
-            in javascript the magic variable 'this' always refers to the object
+            In Javascript the magic variable 'this' always refers to the object
             that the function is called on. so code like this doesn't do what you
             think it does. when you are using other objects the context may be
             different. when you pass a function to somewhere else to be called back,
@@ -449,18 +429,16 @@ var output = input.map((x)=>x*2);
 
     <section>
         <h1>The <code>self</code> pattern</h1>
-        <pre>
-            function App() {
-                this.clicked = false;
+        <pre>function App() {
+    this.clicked = false;
 
-                var button = document.getElementById('button');
+    var button = document.getElementById('button');
 
-                var self = this;
-                button.addEventListener('click', function(evt) {
-                    self.clicked = true;
-                });
-            }
-        </pre>
+    <b>var self = this;</b>
+    button.addEventListener('click', function(evt) {
+        self.clicked = true;
+    });
+}</pre>
         <aside>
             this created something known as the 'self' pattern where you save
             the correct `this` using a temp variable called `self`;
@@ -470,19 +448,17 @@ var output = input.map((x)=>x*2);
 
     <section>
         <h1>Function binding</h1>
-        <pre>
-            function App() {
-                this.clicked = false;
+        <pre>function App() {
+    this.clicked = false;
 
-                var button = document.getElementById('button');
+    var button = document.getElementById('button');
 
-                var callback = (function(evt) {
-                    this.clicked = true
-                }).bind(this);
+    var callback = (function(evt) {
+        this.clicked = true
+    })<b>.bind(this);</b>
 
-                button.addEventListener('click',callback);
-            }
-        </pre>
+    button.addEventListener('click',callback);
+}</pre>
         <aside>
             another way to solve it is to bind the function.
             'bind' forces the 'this' to be a specific object.
@@ -490,18 +466,16 @@ var output = input.map((x)=>x*2);
     </section>
 
     <section>
-        <pre>
-            function App() {
-                this.clicked = false;
+        <pre>function App() {
+    this.clicked = false;
 
-                var button = document.getElementById('button');
-                button.addEventListener('click',()=>{
-                    this.clicked = true;
-                });
-            }
-        </pre>
+    var button = document.getElementById('button');
+    button.addEventListener('click',()=>{
+        this.clicked = true;
+    });
+}</pre>
         <aside>
-            arrow functions give us a better way to do it.
+            Arrow functions give us a better way to do it.
             they automatically capture the `this` var from the surrounding
             context of where the funciton <b>is defined</b>, not where it's <b>used</b>.
             this means you can pass the function to some other place and know the
@@ -530,19 +504,17 @@ var output = input.map((x)=>x*2);
     </section>
     <section>
         <h1>Pyramid of Doom</h1>
-        <pre>
-            fs.readFile("file.txt", function(err, file) {
-                db.fetchNames(function(err, names) {
-                    processFile(file, names, function(err, outfile) {
-                        fs.writeFile('file.txt',outfile, function(err, status) {
-                            console.log("we are done writing the file");
-                        })
-                    });
-                })
-            });
-        </pre>
+        <pre>fs.readFile("file.txt", function(err, file) {
+    db.fetchNames(function(err, names) {
+        processFile(file, names, function(err, outfile) {
+            fs.writeFile('file.txt',outfile, function(err, status) {
+                console.log("we are done writing the file");
+            })
+        });
+    })
+});</pre>
         <aside>
-            for example, in node you might want to load a file, parse it,
+            For example, in Node you might want to load a file, parse it,
             make a database request, then write a new file. these must all be
             done in order, but they are all asynchronous so you have to start
             nesting your callbacks. this produces what js hackers like to
@@ -553,52 +525,364 @@ var output = input.map((x)=>x*2);
     </section>
     <section>
         <h1>What is a promise</h1>
+        <pre>
+            var prom = makeSomePromise();
+            //value not ready yet
+            prom.then((value)=>{
+                //do something with the value
+            })
+        </pre>
         <aside>
-            a promise is an object that represents a value which may not be
-            available yet. it 'promises' to have the value in the uture.
-            you can add a callback to be invoked when the final value is ready.
-            like this[code].
+            A <code>Promise</code> is an object that represents a value which may not be
+            available yet. It 'promises' to have the value in the future.
+            You can add a callback to be invoked when the final value is ready.
+            like this.
+        </aside>
+    </section>
+
+    <section>
+        <pre>
+    fs.readFile("file.txt")
+        .then((file) => {
+            return db.fetchNames().then((names)=>{
+                return processFile(file,names)
+            })
+        })
+        .then((outfile)=>{
+            return fs.writeFile('file.txt',outfile);
+        })
+        .then(()=>{
+            console.log("we are done writing the file");
+        });
+</pre>
+
+        <aside>
+            <p>In this way it's much like traditional callbacks, but promises add a
+            twist. they can be <i>chained</i>.  Let's revisit our code from before.
+            Each of these functions must be called in order, and each depends on
+            the result of the previous one. Using promises we can do it like this
+            instead. Notice how the arrow functions make this nice and clean.
+            Each <code>then()</code> callback returns a value.
+            This value is passed to the next one so all of our functions can be easily chained.</p>
+
+            <p>Now you'll notice that the processFile command needs the result of the previous
+            two values. but a promise only passes one value. We also don't care what
+            order readFile and fetchNames happens in. We just want to know when both
+            are completed. We can do that with Promise.all</p>
+        </aside>
+    </section>
+
+    <section>
+        <pre>
+            var proms = filenames.map((name)=> readFile(name));
+            Promise.all(proms).then((files)=>{
+                console.log(`we have ${files.length} files`);
+            });
+        </pre>
+        <aside>If we had a list of filenames we wanted
+            to load each file and be notified when they are all done.
+            we can do that with Promise.all() this is a utlity method which
+            takes an array of promises and returns a new promise that
+            resolves when all of the subpromises complete.
+            Lets look at our previous example again.
+        </aside>
+    </section>
+
+    <section>
+        <pre>
+            Promise.all([
+                fs.readFile("file.txt"),
+                db.fetchNames()
+            ])
+            .then((vals) => processFile(vals[0],vals[1]))
+            .then((outfile)=> fs.writeFile('file.txt',outfile))
+            .then(()=> console.log("we are done writing the file"));
+        </pre>
+
+        <aside>
+            <p>I'm combining the read file and database call into a single promise
+                using Promise.all. The resulting value is an array containing
+                the results of both, so I can put them into processFile.
+                I've also used the abbreviated arrow syntax to make
+                the code smaller and cleaner</p>
+
+            <p>now consider what happens if one of these things fails?  if
+                the first one fails we could put in a try catch block, but
+                the next then will still be called. really we want everything
+                to stop if the first one fails. promises have another trick up
+                their sleeves: the catch callback.</p>
+        </aside>
+    </section>
+
+    <section>
+        <pre>
+            Promise.all([
+                fs.readFile("file.txt"),
+                db.fetchNames()
+            ])
+            .then((vals) => processFile(vals[0],vals[1]))
+            .then((outfile)=> fs.writeFile('file.txt',outfile))
+            .then(()=> console.log("we are done writing the file"))
+            <b>.catch((e) => {
+                console.log("some error happened");
+            });</b>
+        </pre>
+        <aside>
+            In this version if anything fails it will immediately jump to the
+            catch callback a the end, skipping the rest.  after the catch we
+            can still add more then clauses.
         </aside>
     </section>
 
 
-        * in this way it's much like traditional callbacks, but promises add a twist. they can be chained.  let's revisit our code from before. each of these functions must be called in order, and each depends on the result of the previous one. using promises we can do it like this instead. notice how the arrow functions make this nice and clean [code]. each then callback returns a value. this value is passed to the next one. so all of our functions can be easily chained
-        * now consider what happens if one of these things fails?  if the first one fails we could put in a try catch block, but the next then will still be called. really we want everything to stop if the first one fails. promises have anotehr trick up their sleeves: the catch callback.
-        * [code] in this version if anything fails it will immediately jump to the catch callback, skipping the rest.  after the catch we can still add more then clauses.
-        * promises only work if the apis we call actually use them. fortunately lots of libraries are starting to switch over to promises, but while we wait we can make our own promises two.  you do this with the promise constructor.
-        * [code] it takes two values: resovle and reject. each of these are callback functions.  inside you do whatever you need to that takes a long time, even if it involves multiple callbacks.  when you are completely done invoke resolve() with the final value. this will then be sent the the first 'then' clause of whatever uses your promise.  if something bad happens and you want to reject the value, instead of throwing an error use reject() and you can pass whatever alternate value you want.
-        * here's a real-life example. i use AJAX calls all the time but they can be ugly. let's wrap up this code in a promise. [code]
-        * now it looks like this [code]. still the same basic code, but i can call it like this instead [code]. wow, that's so much cleaner.
-        * In reality I don't need to wrap up my AJAX calls because there is a new web standard called Fetch which already does this for me [fetch code example].
-        * now suppose you have multiple promises which don't depend on eachother, and you want to know when *all* of them are done. for example, if you have a list of file names and you want to load each file and be notified when they are all done. we can do that with Promise.all() this is a utlity method which takes an array of promises and returns a new promise that resolves when all of the subpromises complete. [code]
-        * so promises can be a bit tricky to wrap your head around at first, but once you start using them i think you'll really like them. it makes it very easy to pull multiple functions together into a single workflow that makes logical sense.
-    * bonus: and of course the many array and object functions.
-        * so that is the four awesome features of ES6, the new javascript, that you can start using right now.  However, i really want to give you a nice bonus feature. There's a bunch of functions which aren't exactly new, but what is new is that we can finally use them because they are supported everywhere.
-        * Array has a bunch of awesome utility functions which work great with promises. YOu'll never need to write a loop again.
-            * map, forEach, find, filter, indexOf
-        * For working with hashmaps and other objects, the Object API has some useful functions too. Object.keys [code, others?]
-* things to definitely avoid for now
-    * destructuring. this lets you pull values out of an object by name. it can be useful in a few situation, but the best use i've found is extracting functions from modules. unfortunately modules are still a mess and don't work the same everywhere, so avoid for now. along with destructuring you can do tricks like default parameters, and the spread operator. I find these to be more trouble than they are worth, at least for now.
-    * There's a bunch of other things coming in ES6 that are genuinely useful, but they aren't supported everywhere yet so I suggest you hold off for a while. These include symbols, generators, iterators, weak maps and sets, and proxies
-    * There is also a new class syntax. It still uses JavaScript's prototypical inheritance, but it makes the syntax of defining a class cleaner [code, before and after]. However, it's not as valuable without the new module support so I suggest waiting a bit longer.
-* how to use these extensions in server side node
-    * use the recent node. it just works. [verify]
-* how to use these extensions in client side node
-    * most desktop browsers and mobile browsers support these.  depending on your audience you may have older browsers / older mobile OSes that don’t.  [make a chart] whenever you want to know if something is ready, go to caniuse.com
+
+    <section>
+        <pre>
+            function makePromise(foo,bar) {
+                return new Promise((resolve, reject) => {
+                    try {
+                        //do long stuff
+                        resolve(value);
+                    } catch {
+                        reject(error);
+                    }
+                });
+            }
+        </pre>
+        <aside>
+            <p>Of promises only work if the apis we call actually use them.
+            Fortunately lots of libraries are starting to switch over to
+            promises, but while we wait we can make our own promises too.
+            We do it with the promise constructor.</p>
+
+            <p>It takes two values: resolve and reject. each of these are
+                callback functions. Inside you do whatever you need to that
+                takes a long time, even if it involves multiple callbacks.
+                When you are completely done invoke resolve() with the final
+                value. this will then be sent the the first 'then' cl
+                ause of whatever uses your promise.</p>
+
+            <p>if something bad happens and you want to reject the value,
+                instead of throwing an error use reject() and you can pass
+                whatever alternate value you want.
+            </p>
+        </aside>
+    </section>
+
+    <section>
+        <pre>
+var url = "http://api.silly.io/api/list/e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
+
+var xml = new XMLHttpRequest();
+xml.addEventListener('load', function() {
+    var result = JSON.parse(this.responseText);
+    console.log(result);
+});
+xml.open("GET",url);
+xml.send();
+</pre>
+
+        <aside>Here's a real-life example.
+            I use AJAX calls all the time but they can be ugly, like this.
+            Let's wrap this code up in a promise.
+        </aside>
+    </section>
+
+    <section>
+        <pre>function doGet(url) {
+    return new Promise((resolve,rej)=>{
+        var xml = new XMLHttpRequest();
+        xml.addEventListener('load', function() {
+            var result = JSON.parse(this.responseText);
+            resolve(result);
+        });
+        xml.addEventListener('error',function(error) {
+            reject(error);
+        });
+        xml.open("GET",url);
+        xml.send();
+    });
+}</pre>
+<pre>
+var url = "http://api.silly.io/api/list/e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
+doGet(url).then((obj)=>{
+    console.log(obj);
+});
+</pre>
+
+    <aside>now it looks like this. It's still the same basic code, but i can call it like this instead.
+        wow, that's so much cleaner.
+    </aside>
+    </section>
+
+    <section>
+        <pre>var url = "http://api.silly.io/api/list/e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
+fetch(url).then((obj) => {
+    console.log(obj);
+});
+</pre>
+        <aside>
+        In reality I don't need to wrap up my AJAX calls because there is a new
+        web standard called Fetch which already does this for me, but
+        until Fetch is supported in all browser, we can use our own.
+        </aside>
+    </section>
+
+    <section>
+        <h1>Promises are awesome</h1>
+        <aside>so promises can be a bit tricky to wrap your head around at
+            first, but once you start using them I think you'll really like
+            them. It makes it very easy to pull multiple functions together
+            into a single workflow that makes logical sense, and to
+            properly catch all errors along the way.</aside>
+    </section>
+
+    <section>
+        <h1>Bonus Features</h1>
+        <aside>
+            So that is the four awesome features of ES6 that you can start using right now.
+            However, I really want to give you a nice bonus feature. There's a bunch
+            of functions which aren't exactly new, in fact they've been around for
+            a while, but we can finally use them because they are supported everywhere.
+        </aside>
+    </section>
+
+    <section>
+        <h1>Array</h1>
+        <pre>
+            var values = [1,2,3,4,5,6,7,8,9,10];
+
+            values.forEach((x)=>console.log(x));
+            var doubled = values.map((x) => x*2);
+
+            //find all values that match the filter
+            var evens = values.filter((x)=>x%2==0);
+
+            //true if at least one item matches
+            var any = values.some((x) => x > 10);
+
+            //find the first that matches
+            var six = values.find((x) =>  x >= 6);
+            //find the index of the first that match
+            var index = values.findIndex((x) =>  x >= 6);
+            //reduce the array to a single value
+            var sum = values.reduce((a,b) => a+b, 0);
+        </pre>
+
+
+        <aside>Array has a bunch of awesome utility functions which work great with arrow functions. You'll never need to write a loop again.
+        </aside>
+    </section>
+
+    <section>
+        <pre>
+            var obj = {
+                first:'Alice',
+                middle:'N',
+                last:'Wonderland',
+                age:8,
+                height:45,
+            }
+            Object.keys(obj).forEach((key)=>{
+                console.log("key = ", key);
+                console.log("value = ", obj[key]);
+            });
+        </pre>
+        <aside>For working with hashmaps and other objects, the Object API has some useful functions too. Object.keys will give
+            you a list of every property name on an object, in a predictable order. I use this all the time.
+        </aside>
+    </section>
+
+    <section>
+        <h1>Things to definitely avoid for now</h1>
+        <ul>
+            <li>Destructuring</li>
+            <li>Modules</li>
+            <li>Default Parameters</li>
+            <li>Spread Operator</li>
+        </ul>
+        <aside>
+        <p>Destructuring. This lets you pull values out of an object by name.
+        it can be useful in a few situation, but the best use i've found is
+        extracting functions from modules. Unfortunately modules are still a
+        mess and don't work the same everywhere, so avoid for now. </p>
+        <p>Along with destructuring you can do without tricks like default
+            parameters, and the spread operator. I find these to be more
+            trouble than they are worth, at least for now.</p>
+        </aside>
+    </section>
+
+    <section>
+        <h1>Things to definitely avoid for now</h1>
+        <ul>
+            <li>Symbols</li>
+            <li>Generators and Iterators</li>
+            <li>Weak Maps and Weak Sets</li>
+            <li>Proxies</li>
+        </ul>
+        <aside>
+            There's a bunch of other things coming in ES6 that are genuinely
+            useful, but they aren't supported everywhere yet so I suggest you
+            hold off for a while. These include symbols, generators, iterators,
+            weak maps and sets, and proxies
+        </aside>
+    </aside>
+</section>
+
+<section>
+    <h1>Class Syntax</h1>
+    <pre>class Foo extends Bar {
+    constructor(stuff) {
+        super(stuff);
+        this.first = "first name"
+    }
+    doStuff() {
+    }
+    doMoreStuff() {
+    }
+}</pre>
+    <aside>
+    There is also a new class syntax. It still uses JavaScript's prototypical
+    inheritance, but it makes the syntax of defining a class cleaner.
+    However, it's not as valuable without the
+    new module support so I suggest waiting a bit longer.
+    </aside>
+</section>
+
+<section>
+    <h2>Can I Use them now</h2>
+
+    <h1><a href="http://caniuse.com/">caniuse.com</a></h1>
+
+    <aside>
+        Most desktop and mobile browsers support everything I've shown you.
+        However, depending on your audience you may have older
+        browsers / older mobile OSes that don’t.  Whenever you want to know
+        if something is ready, go to caniuse.com. It will tell you
+        what versions of each browser support what.
+    </aside>
+</section>
+
+<!--
+<section>
 * Code for the future.
     * in the past we would say: wait until x% of the user audience can support this. Today, we say: code for the future and let a compiler worry about the past. simplest way to use babel or web pack. mention kits for different frameworks.
     * using these in your code will make your code better and prepare for the future. as tools and browsers mature you won’t need to change your code. just one day you’ll be able to drop the compiler step. (of course you’ll still want to use minimizers and compressors and linters anyway).
-* So that is 4 awesome new features of ES6 that you can start using right away. More stuff is coming, but you don't need to wait to use these. get to codin'. and now we have time for some questions.
+</section>
+-->
+
+<section>
+    <h2>Learn More</h2>
+
+    <h1><a href="https://www.pubnub.com/blocks-catalog/">pubnub.com/blocks-catalog</a></h1>
+    <aside>So that is 4 awesome new features of ES6 that you can start
+        using right away. More stuff is coming, but you don't need to wait to
+        use these. get to codin'. and now we have time for some questions.
+    </aside>
+</section>
 
 
 
-
-    <section>
-        <h1>code sample</h1>
-        <pre class='javascript'>
-            some cool awesome code
-        </pre>
-    </section>
 
 
     <div id="speaker-view" class="hbox">

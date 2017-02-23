@@ -50,8 +50,8 @@ aside {
     display: none;
     position: fixed;
     top: 20px;
-    right: 2px;
-    width: 60vw;
+    right: 20px;
+    left: 20px;
     margin:0;
     background-color: white;
     color: black;
