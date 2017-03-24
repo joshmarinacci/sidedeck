@@ -1,4 +1,5 @@
 /* =========== general ============== */
+/*
 body {
     font-family: "TypoPRO Source Sans Pro", sans-serif;
 }
@@ -25,6 +26,7 @@ pre, code {
     font-family: "TypoPRO Source Code Pro", monospace;
     color: #ff6d12;
 }
+
 
 a {
     color: #ff6d12;
@@ -78,11 +80,12 @@ blockquote cite {
 blockquote cite:before {
     content: "\2014 \2009";
 }
-
+*/
 
 /* ===================== syntax highlighting ============== */
 
 
+/*
 pre {
     border: 1px solid black;
     text-align: left;
@@ -95,7 +98,7 @@ pre {
     max-width: 85vw;
     font-size: 200%;
 }
-
+*/
 
 /*
 .hljs {
@@ -162,6 +165,7 @@ pre {
 }
 
 
+/*
 section.main {
     background-color: #ff6d12;
     color: white;
@@ -171,4 +175,59 @@ section.main h1, section.main h2 {
 }
 section.main a {
     color: white;
+}
+*/
+
+
+
+/* fonts */
+body {
+    font-size: 100%;
+}
+section {
+
+}
+h1 { font-size: 400%; }
+h1 {
+    position: absolute;
+    left: 0em;
+    right: 0em;
+    top: 0em;
+}
+
+body {
+    background-color: #35ab94;
+    /*background-color: #00a3b8;*/
+    background-image: url(https://www.transparenttextures.com/patterns/axiom-pattern.png);
+}
+section {
+    background: none;
+}
+
+@font-face {
+    font-family:  'Octanis Sans';
+    src:          url('../fonts/Octanis/TTF/Octanis-Sans.ttf') format('truetype');
+    font-style:   normal;
+    font-weight:  400;
+    font-stretch: normal;
+    font-variant: normal;
+}
+
+@font-face {
+    font-family:  'Octanis Sans Italic';
+    src:          url('../fonts/Octanis/TTF/Octanis-SansItalic.ttf') format('truetype');
+    font-style:   normal;
+    font-weight:  400;
+    font-stretch: normal;
+    font-variant: normal;
+}
+
+h1, h2 {
+    font-family: "Octanis Sans", sans-serif;
+    color: white;
+    text-align: center;
+}
+code {
+    color: white;
+    font-family: "Octanis Sans Italic", sans-serif;
 }
