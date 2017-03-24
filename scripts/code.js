@@ -170,6 +170,7 @@ var keybinder = {
 
 function sendEvent(payload) {
     if(config.mode !== 'edit') return;
+    console.log("publishing");
     pubnub.publish({channel:config.channels.slides, message:payload});
 
 }

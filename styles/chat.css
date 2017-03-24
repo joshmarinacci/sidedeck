@@ -1,20 +1,3 @@
-.vbox {
-    display: flex;
-    flex-direction: column;
-}
-.hbox {
-    display: flex;
-    flex-direction: row;
-}
-.grow {
-    flex: 1;
-}
-.scroll {
-    overflow: scroll;
-}
-.debug {
-    border: 1px solid red;
-}
 
 #questions-panel {
     position: absolute;

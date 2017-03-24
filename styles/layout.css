@@ -9,7 +9,6 @@ body {
 }
 
 section {
-    background-color: white;
     bottom: 0;
     left: 0;
     right: 0;
@@ -23,6 +22,7 @@ section {
     text-align: center;
     position: fixed;
     box-sizing: border-box;
+    border: 5px solid red;
 }
 
 /* ============= footer ============= */
@@ -31,15 +31,12 @@ footer {
     top: 0;
     left: 0;
     right: 0;
-    background-color: #555;
     display: flex;
     flex-direction: row;
-    color: white;
     height: 3em;
     margin:0;
     box-sizing: border-box;
-    font-size: 130%;
-    border: 0px solid black;
+    border: 2px solid black;
     padding: 1em;
     align-items: center;
 }
@@ -88,21 +85,32 @@ aside ul li {
 
 /* ============= */
 
-.grow {
-    flex:1;
+.vbox {
+    display: flex;
+    flex-direction: column;
 }
+.hbox {
+    display: flex;
+    flex-direction: row;
+}
+.grow {
+    flex: 1;
+}
+.scroll {
+    overflow: scroll;
+}
+.debug {
+    border: 1px solid red;
+}
+
 
 /* ============== images ============ */
 img {
     border: 0px solid red;
     margin:0;
-    width: 80%;
-    height: 90%;
     object-fit: contain;
     box-sizing: border-box;
 }
-
-
 
 button {
     margin: 0em 0.5em;
@@ -121,11 +129,6 @@ button {
     bottom:0;
     right:0;
 }
-.panel {
-    border: 1px solid black;
-}
-
-
 
 .speaker-display section.active {
     border: 5px solid red;

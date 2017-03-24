@@ -153,7 +153,7 @@ pre {
 
 
 /* =================== slide styles ==================== */
-
+/*
 .split-v {
     display: flex;
     flex-direction: row;
@@ -163,7 +163,7 @@ pre {
     flex-direction: column;
     flex: 1;
 }
-
+*/
 
 /*
 section.main {
@@ -185,23 +185,25 @@ body {
     font-size: 100%;
 }
 section {
+    font-size: 1rem;
+    border: 1px solid blue;
+    text-align: center;
+}
+h1, h2, h3, h4 { margin: 0; padding: 0.25rem; }
+h1 {font-size: 400% }
+h2 {font-size: 300% }
+h3 {font-size: 100% }
+h4 {font-size: 80% }
+ul {
+    font-size: 200%;
 
 }
-h1 { font-size: 400%; }
-h1 {
-    position: absolute;
-    left: 0em;
-    right: 0em;
-    top: 0em;
-}
+
 
 body {
     background-color: #35ab94;
     /*background-color: #00a3b8;*/
     background-image: url(https://www.transparenttextures.com/patterns/axiom-pattern.png);
-}
-section {
-    background: none;
 }
 
 @font-face {
@@ -222,12 +224,61 @@ section {
     font-variant: normal;
 }
 
-h1, h2 {
+h1, h2, h3, h4, ul {
     font-family: "Octanis Sans", sans-serif;
-    color: white;
-    text-align: center;
 }
 code {
     color: white;
     font-family: "Octanis Sans Italic", sans-serif;
+}
+
+
+
+/* colors */
+body {
+    background-color: #f5f5f5;
+}
+section {
+    background-color: white;
+}
+section {
+    background: none;
+}
+iframe {
+    background-color: white;
+}
+
+/* layout */
+
+section {
+    border: 0px solid red;
+}
+section > * {
+    flex: 0;
+}
+img {
+    max-width: 900px;
+    max-height: 700px;
+}
+ul {
+    text-align: left;
+}
+iframe {
+    border: 1px solid black;
+}
+pre {
+    min-height: 20em;
+    max-height: 20em;
+    text-align: left;
+    font-size: 120%;
+    border: 1px solid black;
+}
+pre.mini {
+    min-height: 5em;
+}
+
+footer {
+    background-color: #cccccc;
+    font-family: "Octanis Sans", sans-serif;
+    border: 1px solid gray;
 }

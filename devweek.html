@@ -25,11 +25,9 @@
     </footer>
 
 <!-- intro -->
-<section class="split-v">
-      <div>
+<section class="">
           <h1>Josh Marinacci</h1>
           <h2>Head of Developer Evangelism</h2>
-      </div>
       <div>
           <img src="images/pubnub.png"/>
       </div>
@@ -147,7 +145,7 @@
 <section>
     <h1>EmojiBot</h1>
     <iframe
-            style="border: 1px solid orange; width:80vw; height:70vh;"
+            style="width:80vw; height:70vh;"
             src="heartbot.html"
     ></iframe>
     <aside>This is the EmojiBot. It fixes what you type in by making it heartier.
@@ -187,6 +185,7 @@ export default (request) => {
 
 <!-- Emoji bot diagram -->
 <section>
+    <h2>HeartBot Architecture</h2>
     <img src="images/EmojiDiagram.png"/>
     <aside>
         <p>The code runs in the realtime infrastructure. I'm using PubNub and BLOCKS.
@@ -231,7 +230,7 @@ export default (request) => {
 <section>
     <h1>ImageBot</h1>
     <iframe
-            style="border: 1px solid orange; width:90vw; height:70vh;"
+            style="width:90vw; height:70vh;"
             src="../../cloudinary-react-demo/build/index.html"
     ></iframe>
     <aside>
@@ -290,7 +289,7 @@ if(verb === 'reset') return reset(rest);
 if(verb === 'make' &amp;&amp; nextWord === 'square') return makeSquare(rest);
 ...
     </pre>
-<pre class="javascript code">
+<pre class="javascript code mini">
     {
         "action":"resize"
     }
@@ -385,7 +384,7 @@ return db.get('context').then((context) => {
 <!-- mrrockbot demo -->
 <section>
     <iframe
-            style="border: 1px solid orange; width:90vw; height:90vh;"
+            style="width:90vw; height:90vh;"
             src="http://localhost/pubnub/chatbot-webinar/chat.html"
     ></iframe>
     <aside>This is my favorite one. MR ROCKBOT is a chat bot who understands
@@ -617,8 +616,8 @@ return kvstore.get("context").then((ctx) => {
         <li>IBM Watson</li>
         <li>PubNub</li>
     </ul>
-    <h3>@joshmarinacci</h3>
-    <h3>josh@pubnub.com</h3>
+    <h2>@joshmarinacci</h2>
+    <h2>josh@pubnub.com</h2>
     <aside>
         Today I've shown you how to build three different chatbots using
         serverless infrastructure and AI services. At no point did I have
