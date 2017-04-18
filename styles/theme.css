@@ -256,9 +256,6 @@ iframe {
 section {
     border: 0px solid red;
 }
-section > * {
-    flex: 0;
-}
 img {
     max-width: 900px;
     max-height: 700px;
@@ -270,11 +267,10 @@ iframe {
     border: 1px solid black;
 }
 pre {
-    min-height: 20em;
-    max-height: 20em;
+    padding: 2em;
     text-align: left;
     font-size: 120%;
-    border: 1px solid black;
+    border: 1px solid #888;
 }
 pre.mini {
     min-height: 5em;

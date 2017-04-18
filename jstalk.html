@@ -525,15 +525,13 @@ for(var i=0; i&lt;input.length; i++) {
     </section>
     <section>
         <h1>What is a promise</h1>
-        <pre>
-            var prom = makeSomePromise();
-            //value not ready yet
-            prom.then((value)=>{
-                //do something with the value
-            })
-        </pre>
+        <pre>var prom = makeSomePromise();
+//value not ready yet
+prom.then((value)=>{
+    //do something with the value
+})</pre>
         <aside>
-            A <code>Promise</code> is an object that represents a value which may not be
+            A <i>Promise</i> is an object that represents a value which may not be
             available yet. It 'promises' to have the value in the future.
             You can add a callback to be invoked when the final value is ready.
             like this.
@@ -541,20 +539,18 @@ for(var i=0; i&lt;input.length; i++) {
     </section>
 
     <section>
-        <pre>
-    fs.readFile("file.txt")
-        .then((file) => {
-            return db.fetchNames().then((names)=>{
-                return processFile(file,names)
-            })
+        <pre>fs.readFile("file.txt")
+    .then((file) => {
+        return db.fetchNames().then((names)=>{
+            return processFile(file,names)
         })
-        .then((outfile)=>{
-            return fs.writeFile('file.txt',outfile);
-        })
-        .then(()=>{
-            console.log("we are done writing the file");
-        });
-</pre>
+    })
+    .then((outfile)=>{
+        return fs.writeFile('file.txt',outfile);
+    })
+    .then(()=>{
+        console.log("we are done writing the file");
+    });</pre>
 
         <aside>
             <p>In this way it's much like traditional callbacks, but promises add a
@@ -574,10 +570,10 @@ for(var i=0; i&lt;input.length; i++) {
 
     <section>
         <pre>
-            var proms = filenames.map((name)=> readFile(name));
-            Promise.all(proms).then((files)=>{
-                console.log(`we have ${files.length} files`);
-            });
+var proms = filenames.map((name)=> readFile(name));
+Promise.all(proms).then((files)=>{
+    console.log(`we have ${files.length} files`);
+});
         </pre>
         <aside>If we had a list of filenames we wanted
             to load each file and be notified when they are all done.
@@ -590,13 +586,13 @@ for(var i=0; i&lt;input.length; i++) {
 
     <section>
         <pre>
-            Promise.all([
-                fs.readFile("file.txt"),
-                db.fetchNames()
-            ])
-            .then((vals) => processFile(vals[0],vals[1]))
-            .then((outfile)=> fs.writeFile('file.txt',outfile))
-            .then(()=> console.log("we are done writing the file"));
+Promise.all([
+    fs.readFile("file.txt"),
+    db.fetchNames()
+])
+.then((vals) => processFile(vals[0],vals[1]))
+.then((outfile)=> fs.writeFile('file.txt',outfile))
+.then(()=> console.log("we are done writing the file"));
         </pre>
 
         <aside>
@@ -616,16 +612,16 @@ for(var i=0; i&lt;input.length; i++) {
 
     <section>
         <pre>
-            Promise.all([
-                fs.readFile("file.txt"),
-                db.fetchNames()
-            ])
-            .then((vals) => processFile(vals[0],vals[1]))
-            .then((outfile)=> fs.writeFile('file.txt',outfile))
-            .then(()=> console.log("we are done writing the file"))
-            <b>.catch((e) => {
-                console.log("some error happened");
-            });</b>
+Promise.all([
+    fs.readFile("file.txt"),
+    db.fetchNames()
+])
+.then((vals) => processFile(vals[0],vals[1]))
+.then((outfile)=> fs.writeFile('file.txt',outfile))
+.then(()=> console.log("we are done writing the file"))
+<b>.catch((e) => {
+    console.log("some error happened");
+});</b>
         </pre>
         <aside>
             In this version if anything fails it will immediately jump to the
