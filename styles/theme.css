@@ -281,3 +281,7 @@ footer {
     font-family: "Octanis Sans", sans-serif;
     border: 1px solid gray;
 }
+
+pre.hljs {
+    padding: 1.5em;
+}

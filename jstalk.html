@@ -634,16 +634,16 @@ Promise.all([
 
     <section>
         <pre>
-            function makePromise(foo,bar) {
-                return new Promise((resolve, reject) => {
-                    try {
-                        //do long stuff
-                        resolve(value);
-                    } catch {
-                        reject(error);
-                    }
-                });
-            }
+function makePromise(foo,bar) {
+    return new Promise((resolve, reject) => {
+        try {
+            //do long stuff
+            resolve(value);
+        } catch {
+            reject(error);
+        }
+    });
+}
         </pre>
         <aside>
             <p>Of promises only work if the apis we call actually use them.
@@ -667,7 +667,8 @@ Promise.all([
 
     <section>
         <pre>
-var url = "http://api.silly.io/api/list/e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
+var url = "http://api.silly.io/api/list/"
+              +"e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
 
 var xml = new XMLHttpRequest();
 xml.addEventListener('load', function() {
@@ -700,7 +701,8 @@ xml.send();
     });
 }</pre>
 <pre>
-var url = "http://api.silly.io/api/list/e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
+var url = "http://api.silly.io/api/list/"
+    +"e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
 doGet(url).then((obj)=>{
     console.log(obj);
 });
@@ -712,7 +714,8 @@ doGet(url).then((obj)=>{
     </section>
 
     <section>
-        <pre>var url = "http://api.silly.io/api/list/e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
+        <pre>var url = "http://api.silly.io/api/list/"
+            +"e3da7b3b-976d-4de1-a743-e0124ce973b8?format=json";
 fetch(url).then((obj) => {
     console.log(obj);
 });
@@ -746,23 +749,23 @@ fetch(url).then((obj) => {
     <section>
         <h1>Array</h1>
         <pre>
-            var values = [1,2,3,4,5,6,7,8,9,10];
+var values = [1,2,3,4,5,6,7,8,9,10];
 
-            values.forEach((x)=>console.log(x));
-            var doubled = values.map((x) => x*2);
+values.forEach((x)=>console.log(x));
+var doubled = values.map((x) => x*2);
 
-            //find all values that match the filter
-            var evens = values.filter((x)=>x%2==0);
+//find all values that match the filter
+var evens = values.filter((x)=>x%2==0);
 
-            //true if at least one item matches
-            var any = values.some((x) => x > 10);
+//true if at least one item matches
+var any = values.some((x) => x > 10);
 
-            //find the first that matches
-            var six = values.find((x) =>  x >= 6);
-            //find the index of the first that match
-            var index = values.findIndex((x) =>  x >= 6);
-            //reduce the array to a single value
-            var sum = values.reduce((a,b) => a+b, 0);
+//find the first that matches
+var six = values.find((x) =>  x >= 6);
+//find the index of the first that match
+var index = values.findIndex((x) =>  x >= 6);
+//reduce the array to a single value
+var sum = values.reduce((a,b) => a+b, 0);
         </pre>
 
 
@@ -772,17 +775,17 @@ fetch(url).then((obj) => {
 
     <section>
         <pre>
-            var obj = {
-                first:'Alice',
-                middle:'N',
-                last:'Wonderland',
-                age:8,
-                height:45,
-            }
-            Object.keys(obj).forEach((key)=>{
-                console.log("key = ", key);
-                console.log("value = ", obj[key]);
-            });
+var obj = {
+    first:'Alice',
+    middle:'N',
+    last:'Wonderland',
+    age:8,
+    height:45,
+}
+Object.keys(obj).forEach((key)=>{
+    console.log("key = ", key);
+    console.log("value = ", obj[key]);
+});
         </pre>
         <aside>For working with hashmaps and other objects, the Object API has some useful functions too. Object.keys will give
             you a list of every property name on an object, in a predictable order. I use this all the time.
