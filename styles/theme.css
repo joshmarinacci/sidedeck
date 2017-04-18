@@ -232,6 +232,9 @@ code {
     font-family: "Octanis Sans Italic", sans-serif;
 }
 
+h1 code {
+    color: #0D3349;
+}
 
 
 /* colors */
