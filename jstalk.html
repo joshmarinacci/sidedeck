@@ -313,7 +313,7 @@ var bq = `Sally sells "sea shells"`;</pre>
 var bq = `this is a very long
     piece of text that goes over several lines
     and would require silly hacks`;</pre>
-        <aside>We finally have mulit-line strings.
+        <aside>We finally have multi-line strings.
             Need to quote several lines of something? You don't have to
             escape newlines or do join tricks anymore. Just put in the newlines
             directly and it works.</aside>
@@ -327,8 +327,8 @@ var amount = 5;
 var price = 3;
 var sales = `That costs ${amount*price} dollars`;</pre>
         <aside>
-            Multiline support makes it great for doing templates.
-            Which is where another new feature comes in, expression escaping.
+            Multiline support is <b>great</b> for doing templates.
+            Which is where another new feature comes in, <b>expression escaping</b>.
             Within a super string you can put <b>${}</b> and anything inside the brackets
             can be any Javascript expression. This is much cleaner than
             double escaping your quotes, and it makes templates easier to
@@ -348,7 +348,9 @@ var sales = `That costs ${amount*price} dollars`;</pre>
   &lt;/div&gt;
 `</pre>
         <aside>
-            Here's a more complex example.
+            Here's a more complex example. You'll notice that my syntax highlighting library recognizes
+            the expressions inside of the strings and colors them properly. it really makes it easier
+            to when you are writing html or other languages mixed inside your javascript.
         </aside>
     </section>
 
@@ -356,6 +358,7 @@ var sales = `That costs ${amount*price} dollars`;</pre>
     <section>
         <h1>Arrow Functions</h1>
         <aside>
+            So that was templates. Let's jump to something new , <b>Arrow functions.</b>
             Arrow functions are a different syntax for regular
             functions. they let you write the same code in a more
             compact way, along with one very important difference.
@@ -383,7 +386,7 @@ for(var i=0; i&lt;input.length; i++) {
     return x * 2;
 });</pre>
         <aside>
-            Javascript arrays have a function called map which calls a
+            Javascript arrays have a function called <b>map</b> which calls a
             function on every element to generate a new element,
             which are then placed into a new array.
             still, it would be nice to make it smaller.
@@ -397,7 +400,7 @@ for(var i=0; i&lt;input.length; i++) {
         <h2>Best</h2>
         <pre>var output = input.map((x)=>x*2);</pre>
         <aside>
-            let me explain what's happening.
+            Now that is beautiful and compact and clear. let me explain what's happening.
         </aside>
     </section>
 
@@ -410,7 +413,9 @@ for(var i=0; i&lt;input.length; i++) {
     return x * 2;
 }</pre>
         <aside>
-            arrow functions let us write the same thing smaller.
+            <p>arrow functions let us write the same thing smaller. Get rid of the word <b>function</b>
+                and add the equals greater than which together we call the <b>arrow</b> symbol
+            </p>
         </aside>
     </section>
 
@@ -427,9 +432,10 @@ for(var i=0; i&lt;input.length; i++) {
         <pre>(x) => x * 2</pre>
         <pre>var output = input.map((x)=>x*2);</pre>
         <aside>
-            But we can make it even shorter. We can remove the return and the
-            braces and semicolon, then we get a tiny one line expression
-            which automatically returns it's value. that's so much cleaner.
+            But we can make it even shorter still! if your arrow function is just <b>one line</b> that <b>returns it's value</b>
+            then can remove the return and the
+            braces and semicolon and we get just this tiny thing. it's so much cleaner.
+            We can read this as <b>x goes to x * 2</b>. Beautiful.
         </aside>
     </section>
 
@@ -444,13 +450,17 @@ for(var i=0; i&lt;input.length; i++) {
     });
 }</pre>
         <aside>
+            <p>Now let's talk about <b>this</b>.
             In Javascript the magic variable 'this' always refers to the object
-            that the function is called on. so code like this doesn't do what you
-            think it does. when you are using other objects the context may be
+            that the function is called on. so code like what you see here doesn't do what you
+                think it does. </p>
+                <p>
+            when you are using other objects the context may be
             different. when you pass a function to somewhere else to be called back,
-            it may call the function with a different 'this'. when you add event
+                    it may call the function with a different 'this'.</p>
+            <p>when you add event
             handlers to a button the button will be the 'this'.
-            which isn't what we want.
+                    which isn't what we want. we want the app to be the 'this'</p>
         </aside>
     </section>
 
@@ -469,7 +479,7 @@ for(var i=0; i&lt;input.length; i++) {
         <aside>
             this created something known as the 'self' pattern where you save
             the correct `this` using a temp variable called `self`;
-            kinda yucky. here's another way to solve it.
+            It works but it's kinda yucky. It's a hack. Here's another way to solve it.
         </aside>
     </section>
 
@@ -487,8 +497,12 @@ for(var i=0; i&lt;input.length; i++) {
     button.addEventListener('click',callback);
 }</pre>
         <aside>
-            another way to solve it is to bind the function.
-            'bind' forces the 'this' to be a specific object.
+            <p>another way to solve it is to bind the function.
+                'bind' forces the 'this' to be a specific object.</p>
+            <p>we create a function then bind it to the this that we want, which is the app,, which produces a new function that we save
+                a reference to as 'callback', then we add it to the button.</p>
+            <p>Again, it works, but it's a lot of extra typing
+                and looks yucky. It obscures what we are actually trying to do.</p>
         </aside>
     </section>
 
@@ -502,31 +516,35 @@ for(var i=0; i&lt;input.length; i++) {
     });
 }</pre>
         <aside>
-            Arrow functions give us a better way to do it.
-            they automatically capture the `this` var from the surrounding
-            context of where the funciton <b>is defined</b>, not where it's <b>used</b>.
-            this means you can pass the function to some other place and know the
-            right version of this will be used.  here's the same code with an arrow
-            funciton, and now it does what you think it should do.
+            <p>Arrow functions give us a better way to do it.
+            They automatically capture the `this` variable from the surrounding
+                context of where the function <b>is defined</b>, not where it's <b>used</b>.</p>
+
+            <p>This means we can pass the function to some other place and know the
+                right version of <b>this</b> will be used.  Here's the same code with an arrow
+                function, and now it does what you think it should do.</p>
         </aside>
     </section>
 
     <section>
         <h1>Arrow Functions are Awesome</h1>
         <aside>
-            arrow functions are really awesome. i try to use them
-            everywhere i can. they make 'this' sensible again.
+            So. Arrow functions are really awesome. I try to use them
+            everywhere I can. They make 'this' sensible again. They make your
+            code cleaner and clearer. And you can use them in every browser today.
         </aside>
     </section>
 
     <section>
         <h1>Promises for Long Running Work</h1>
         <aside>
-             another great feature of arrow functions is that they work well
-             with promises. a promise is a new kind of object in javascript
-             designed to help with things that take a long time.
-             javascript doesn't have threads. if you want to do something that
-             might take a long time then you have to use callbacks.
+            <p>Another great feature of arrow functions is that they work well
+            with promises. A <b>promise</b> is a new kind of object in Javascript
+                designed to help with things that take a long time.</p>
+
+            <p>You see, javascript doesn't have threads. if you want to do something that
+                might take a long time then you have to use callbacks.</p>
+            <p>Which results in this...</p>
         </aside>
     </section>
     <section>
@@ -541,25 +559,30 @@ for(var i=0; i&lt;input.length; i++) {
     })
 });</pre>
         <aside>
-            For example, in Node you might want to load a file, parse it,
-            make a database request, then write a new file. these must all be
+            <p>This is the <b>Pyramid of Doom</b></p>
+
+            <p>Suppose in Node you might want to load a file, parse it,
+                make a database request, and then write to a new file.</p>
+            <p>these must all be
             done in order, but they are all asynchronous so you have to start
             nesting your callbacks. this produces what js hackers like to
-            call the pyramid of doom. massively nested code.
-            it's ugly, hard to reason about, and has lots of nasty corners
-            for bugs to hide.  promises help us fight this.
+                call the pyramid of doom. massively nested code.</p>
+
+            <p>This code is really ugly, really hard to reason about, and has lots of nasty corners
+                for bugs to hide.  promises help us fight this the Pyramid of Doom.</p>
         </aside>
     </section>
     <section>
         <h1>What is a promise</h1>
         <pre>var prom = makeSomePromise();
-//value not ready yet
+//value isn't ready yet
 prom.then((value)=>{
     //do something with the value
 })</pre>
         <aside>
-            A <i>Promise</i> is an object that represents a value which may not be
-            available yet. It 'promises' to have the value in the future.
+            This is a Promise. A <i>Promise</i> is an object that represents a
+            value which may not be available yet. It's an object which <b>'promises'</b>
+            to have the value in the future.
             You can add a callback to be invoked when the final value is ready.
             like this.
         </aside>
@@ -580,18 +603,22 @@ prom.then((value)=>{
     });</pre>
 
         <aside>
-            <p>In this way it's much like traditional callbacks, but promises add a
-            twist. they can be <i>chained</i>.  Let's revisit our code from before.
-            Each of these functions must be called in order, and each depends on
-            the result of the previous one. Using promises we can do it like this
-            instead. Notice how the arrow functions make this nice and clean.
-            Each <code>then()</code> callback returns a value.
+            <p>In this way promises are much like traditional callbacks, but promises add a
+            twist.. they can be <b>chained</b>.  </p>
+
+            <p>Let's revisit our code from before.</p>
+            <p>Each of these functions must be called in order, and each depends on
+            the result of the previous one. Using Promises we can do it like this
+                instead.</p>
+
+            <p>Notice how the arrow functions make this nice and clean.
+            Each <b>then()</b> callback returns a value.
             This value is passed to the next one so all of our functions can be easily chained.</p>
 
-            <p>Now you'll notice that the processFile command needs the result of the previous
-            two values. but a promise only passes one value. We also don't care what
-            order readFile and fetchNames happens in. We just want to know when both
-            are completed. We can do that with Promise.all</p>
+            <p>Now you'll notice that the <b>processFile</b> command needs the result of the previous
+            two values. But a promise only passes one value. Also, we don't care what
+                order <b>readFile and fetchNames</b> happens in. We just want to know when both
+                are completed. We can do that with <b>Promise.all</b></p>
         </aside>
     </section>
 
@@ -602,12 +629,18 @@ Promise.all(proms).then((files)=>{
     console.log(`we have ${files.length} files`);
 });
         </pre>
-        <aside>If we had a list of filenames we wanted
-            to load each file and be notified when they are all done.
-            we can do that with Promise.all() this is a utlity method which
-            takes an array of promises and returns a new promise that
-            resolves when all of the subpromises complete.
-            Lets look at our previous example again.
+        <aside>
+            <p>Suppose we have a list of filenames. We want to
+                load each file to load each file and be notified when
+                all of them have been loaded.
+            </p>
+            <p>We can do this with <b>Promise.all()</b>. It'sa utility function which
+                takes an array of Promises and returns a <b>new promise</b> that
+            resolves when all of the sub-promises complete.
+            </p>
+            <p>In this case it resolves when all of the files have been loaded, and gives us
+            an array of the results.</p>
+            <p>So let's go rewrite our previous example with promises.</p>
         </aside>
     </section>
 
@@ -626,14 +659,14 @@ Promise.all([
             <p>I'm combining the read file and database call into a single promise
                 using Promise.all. The resulting value is an array containing
                 the results of both, so I can put them into processFile.
-                I've also used the abbreviated arrow syntax to make
-                the code smaller and cleaner</p>
+                I've also switched to the abbreviated arrow syntax to make
+                the code smaller and cleaner. It's so much easier to read now.</p>
 
-            <p>now consider what happens if one of these things fails?  if
-                the first one fails we could put in a try catch block, but
-                the next then will still be called. really we want everything
-                to stop if the first one fails. promises have another trick up
-                their sleeves: the catch callback.</p>
+            <p>But let's consider what happens if one of these things fails?  if
+                the first one fails we could put in a <b>try catch</b> block, but
+                the next <b>then</b> will still be called. Really we want everything
+                to stop if the first one fails. Promises have another trick up
+                their sleeves: the <b>catch</b> callback.</p>
         </aside>
     </section>
 
@@ -648,12 +681,13 @@ Promise.all([
 .then(()=> console.log("we are done writing the file"))
 <b>.catch((e) => {
     console.log("some error happened");
-});</b>
+})
+.then(()=> console.log("we are done either way"));</b>
         </pre>
         <aside>
             In this version if anything fails it will immediately jump to the
-            catch callback a the end, skipping the rest.  after the catch we
-            can still add more then clauses.
+            <b>catch</b> callback at the end, skipping the rest.  After the <b>catch</b> we
+            can still add more <b>then</b> clauses if we want.
         </aside>
     </section>
 
@@ -673,20 +707,20 @@ function makePromise(foo,bar) {
 }
         </pre>
         <aside>
-            <p>Of promises only work if the apis we call actually use them.
+            <p>Of course promises only work if the APIs we call actually use them.
             Fortunately lots of libraries are starting to switch over to
-            promises, but while we wait we can make our own promises too.
-            We do it with the promise constructor.</p>
+            promises. However, while we wait we can make our own promises too.
+                We do it with the <b>Promise</b> object constructor</p>
 
-            <p>It takes two values: resolve and reject. each of these are
-                callback functions. Inside you do whatever you need to that
+            <p>It takes two values: <b>resolve</b> and <b>reject</b>. each of these are
+                callback functions. Inside you do whatever you need to do that
                 takes a long time, even if it involves multiple callbacks.
-                When you are completely done invoke resolve() with the final
-                value. this will then be sent the the first 'then' cl
-                ause of whatever uses your promise.</p>
+                When you are completely done invoke <b>resolve()</b> with the final
+                value. this will then be sent the the first <b>'then'</b>
+                clause of whatever uses your promise.</p>
 
-            <p>if something bad happens and you want to reject the value,
-                instead of throwing an error use reject() and you can pass
+            <p>If something bad happens and you want to reject the value,
+                then instead of throwing an error you can use <b>reject()</b> and you can pass
                 whatever alternate value you want.
             </p>
         </aside>
@@ -708,7 +742,8 @@ xml.send();
 
         <aside>Here's a real-life example.
             I use AJAX calls all the time but they can be ugly, like this.
-            Let's wrap this code up in a promise.
+            This just does a GET request to a URL which returns some JSON, but there's
+            a lot of boilerplate code.  Let's wrap this code up in a promise.
         </aside>
     </section>
 
@@ -735,8 +770,13 @@ doGet(url).then((obj)=>{
 });
 </pre>
 
-    <aside>now it looks like this. It's still the same basic code, but i can call it like this instead.
-        wow, that's so much cleaner.
+    <aside>
+        <p>Now it looks like this. I put it inside a promise
+            and call resolve or reject when I get a result or an error.</p>
+        <p>It's still the same basic code, but i can call it like this instead.</p>
+        <p>wow, that's so much cleaner. The only have the two things which matter, the URL
+        I'm loading and a JSON result object. The rest of the complexity is hidden inside
+        the promise.</p>
     </aside>
     </section>
 
@@ -748,26 +788,42 @@ fetch(url).then((obj) => {
 });
 </pre>
         <aside>
-        In reality I don't need to wrap up my AJAX calls because there is a new
+        <p>Now in reality I don't need to wrap up my AJAX calls because there is a new
         web standard called Fetch which already does this for me, but
-        until Fetch is supported in all browser, we can use our own.
+            I can still make my own if I want to do something custom.</p>
         </aside>
     </section>
 
     <section>
         <h1>Promises are awesome</h1>
-        <aside>so promises can be a bit tricky to wrap your head around at
-            first, but once you start using them I think you'll really like
-            them. It makes it very easy to pull multiple functions together
+        <aside>So promises can be a bit tricky to wrap your head around at
+            first because we are dealing with asynchronous control flow.
+            But once you start using them I think you'll really like
+            them. They make it very easy to pull multiple functions together
             into a single workflow that makes logical sense, and to
             properly catch all errors along the way.</aside>
     </section>
 
     <section>
-        <h1>Bonus Features</h1>
+        <h1>Four good parts</h1>
+        <ul>
+            <li>better vars: <b>const and let</b></li>
+            <li>better strings: <b>Template Literals</b></li>
+            <li>better functions: <b>Arrow Functions</b></li>
+            <li>better async: <b>Promises</b></li>
+        </ul>
         <aside>
             So that is the four awesome features of ES6 that you can start using right now.
-            However, I really want to give you a nice bonus feature. There's a bunch
+            These are all things you can add to your code right now and work in every
+            recent browser and NodeJS.
+            <i>read them</i>
+        </aside>
+    </section>
+
+    <section>
+        <h1>Bonus Features</h1>
+        <aside>
+            However, if we have a little time , I really want to give you some nice bonus features. There's a bunch
             of functions which aren't exactly new, in fact they've been around for
             a while, but we can finally use them because they are supported everywhere.
         </aside>
@@ -796,7 +852,8 @@ var sum = values.reduce((a,b) => a+b, 0);
         </pre>
 
 
-        <aside>Array has a bunch of awesome utility functions which work great with arrow functions. You'll never need to write a loop again.
+        <aside>Array has a bunch of awesome utility methods which work great with arrow functions. You'll never need to write a traditional loop again.
+            <i>go through each</i>
         </aside>
     </section>
 
@@ -832,9 +889,15 @@ Object.keys(obj).forEach((key)=>{
         it can be useful in a few situation, but the best use i've found is
         extracting functions from modules. Unfortunately modules are still a
         mess and don't work the same everywhere, so avoid for now. </p>
-        <p>Along with destructuring you can do without tricks like default
-            parameters, and the spread operator. I find these to be more
-            trouble than they are worth, at least for now.</p>
+            <p>Now, when I wrote original this presentation modules were still problematic without
+            using a transpiler to work in systems that don't support
+            modules yet, and Node didn't support the new modules syntax. However,
+            as of a few weeks ago Node and the browser have moved forward, so
+            it's worth looking into modules now. The next time
+            I give this presentation I think it'll be time to add modules.</p>
+        <p>Along with destructuring you can ignore tricks like default
+            parameters, and the spread operator. I find these to only
+        be useful when you are doing heavy functional programming.</p>
         </aside>
     </section>
 
@@ -868,12 +931,42 @@ Object.keys(obj).forEach((key)=>{
     }
 }</pre>
     <aside>
-    There is also a new class syntax. It still uses JavaScript's prototypical
-    inheritance, but it makes the syntax of defining a class cleaner.
+    <p>There is also a new class syntax. It still uses JavaScript's prototypical
+    inheritance. We aren't writing Java or C++ here. But the new syntax does make
+        it cleaner to define a class.
     However, it's not as valuable without the
-    new module support so I suggest waiting a bit longer.
+    new module support but it's pretty solid so you are safe using it today
+        if you want.</p>
+        <p>If you are doing React then you will definitely want to use the new
+        class syntax.</p>
     </aside>
 </section>
+
+    <section>
+        <h1>async / await syntax</h1>
+        <pre>
+function getJSON() {
+    //return a promise
+}
+const makeRequest = async () => {
+  console.log(await getJSON())
+  return "done"
+}
+makeRequest()
+
+        </pre>
+        <aside>
+            <p>There is also a new async syntax which builds on top of
+            Promises to make writing asynchronous code
+                even cleaner.  This is going to be a big
+                part of the future but until you are comfortable with Promises
+                I don't suggest going to async await. Also support
+                has only just been added to Node and some browsers, so I'd
+                wait until it's a little more mature and there's better
+                documentation.
+            </p>
+        </aside>
+    </section>
 
 <section>
     <h2>Can I Use them now</h2>
@@ -889,22 +982,54 @@ Object.keys(obj).forEach((key)=>{
     </aside>
 </section>
 
-<!--
-<section>
-* Code for the future.
-    * in the past we would say: wait until x% of the user audience can support this. Today, we say: code for the future and let a compiler worry about the past. simplest way to use babel or web pack. mention kits for different frameworks.
-    * using these in your code will make your code better and prepare for the future. as tools and browsers mature you won’t need to change your code. just one day you’ll be able to drop the compiler step. (of course you’ll still want to use minimizers and compressors and linters anyway).
-</section>
--->
 
 <section>
-    <h2>Learn More</h2>
+    <h1>Code for the future</h1>
 
-    <h1><a href="https://www.pubnub.com/blocks-catalog/">pubnub.com/blocks-catalog</a></h1>
-    <aside>So that is 4 awesome new features of ES6 that you can start
-        using right away. More stuff is coming, but you don't need to wait to
-        use these. get to codin'. and now we have time for some questions.
+    <ul>
+        <li>Transpilers</li>
+        <li>Babel</li>
+        <li>Webpack</li>
+        <li>React JSX</li>
+    </ul>
+
+    <aside>
+        <p>However, even if your audience uses older browsers you don't have to wait.</p>
+        <p>In the past we would say: wait until x% of the user audience can support this. Today, we say: code for the future and let a compiler worry about the past. simplest way to use babel or web pack.    </p>
+        <p>A transpiler is a compiler that converts Javascript to a different
+        form of Javascript.</p>
+        <p>
+            If you are using
+            a react setup then you are already using a transpiler.
+            If you aren't using react then just google for babel or webpack starter
+            kit.</p>
+
+        <p>using these in your code will make your code better and prepare for the future. as tools and browsers mature you won’t need to change your code. just one day you’ll be able to drop the transpiler step.
+        </p>
+
+        <p>Also, if you are shipping a JS app then you'll want to have a compile
+            step anyway because you can add in code linters, minimizers, and compressors
+            that check for errors and optmize your code before it's downloaded
+            by your users.</p>
     </aside>
+</section>
+
+
+<section>
+    <h1>Thank you!</h1>
+    <ul>
+        <li>developer.mozilla.org</li>
+        <li>@joshmarinacci</li>
+        <li>jmarinacci@mozilla.com</li>
+        <li>josh@josh.earth</li>
+    </ul>
+
+    <aside>So that is 4 awesome new features of ES6 that you can start
+        using right away. If you ever have a question about how to use
+    some JS feature always start a developer.mozilla.org.
+    I'm on twitter as @joshmarinacci.
+    That's my moz email but since no one can spell my last name you can
+    email me your questions to josh@josh.earth</aside>
 </section>
 
 
