@@ -151,4 +151,11 @@ button {
     display: block;
     position: relative;
     width: auto;
+    font-size: 16pt;
+    font-family: sans-serif;
+}
+
+.speaker-display #speaker-notes aside * {
+    font-size: 100%;
+    font-family: sans-serif;
 }

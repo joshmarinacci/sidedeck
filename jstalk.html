@@ -26,19 +26,28 @@
         <span class="grow"></span>
         <span>ES6: The Good Parts</span>
         <span class="grow"></span>
-        <span>PubNub</span>
+        <span>Mozilla</span>
         <button id="questions-show">Questions</button>
     </footer>
 
     <section>
         <h1>ES6: The Good Parts</h1>
-        <h2>josh@pubnub.com</h2>
-        <h2>Head of Dev Rel</h2>
+        <h2>josh@josh.earth</h2>
+        <h2>Mozilla Dev Rel</h2>
         <aside>
-            * Welcome
-                * I'm josh head of developer relations at PubNub.
-                talk about ES6 today.
-                please use the questions panel.
+            <ul>
+                <li>            * Welcome
+                </li>
+                <li>            * I'm josh. I recently joined Mozilla as a senior developer evangelist.
+                </li>
+                <li>            * My day job is working on VR and AR, but today I'm going to talk about
+                    something that powers the web. Javascript.
+                </li>
+                <li>            * I've been using JS since 95/96, so over 20 years. man, that makes me feel
+                    old. I realize now that some of you in the audience may not be as old
+                    as Javascript itself.
+                </li>
+            </ul>
         </aside>
     </section>
 
@@ -53,58 +62,68 @@
         </ul>
 
         <aside>
-                * JavaScript has had many versions over the years, but overall
-                the evolution was slow until recently. More changes have happened in the past
-                two years than in the previous twenty.
-                * ES 6 stands for EcmaScript 6. It's also called EcmaScript 2015,
-                or ES 2015.  These are all different names for the 'new Javascript'.
-                * I'm not entirely sure *why* JS has changed so much recently,
-                but it seems to be because the owners of the major JavaScript engines
-                have finally become interested in pushing the language forward.
-                Also, the advent of transpilers have made it possible to use new
-                language features *before* they are built into the browsers.
-                I'll talk a bit more about transpilers in a moment.
+            <ul>
+                <li>
+
+            * JavaScript has had many versions over the years, but overall
+            the evolution was slow until recently. More changes have happened in the past
+            three years than in the previous decades. and that's why I created this talk.
+                </li>
+<li>
+            * ES 6 stands for EcmaScript 6. It's also called EcmaScript 2015,
+            or ES 2015.  These are all different names for the 'new Javascript'.
+</li>
+
+                <li>
+            * I'm not entirely sure *why* JS has changed so much recently, but I
+            I suspect it's because of competiton from other web targeted
+            languages like Typescript and Coffeescript.
+                </li>
+
+                <li>
+            *  Also, the advent of transpilers have made it possible to use new
+            language features *before* they are built into the browsers.
+            I'll talk a bit more about transpilers in a moment.
+                </li>
+            </ul>
         </aside>
     </section>
 
     <section>
         <h1>Why ES6 matters</h1>
         <aside>
-        JS matters because it's the fabric of the web, and increasingly used
-        for server side apps with Node, and mobile and desktop apps with Cordova,
-        React Native, and Electron. In short: JS is everywhere. So it matters
-        that we push it forward. Languages which don't evolve start to die.
-        The other reason to make JS better is simply that it's awesome if JS
-        gets better. Our code can improve. our apps can have fewer bugs. And
-        some of these features enable the runtimes to actually run code faster.
-        </aside>
-    </section>
+            <p>
+            JS matters because it's the fabric of the web, and increasingly used
+            for server side apps with Node, and mobile and desktop apps with Cordova,
+            React Native, and Electron.
 
-    <section>
-        <h1>Why is PubNub Teaching ES6</h1>
-        <ul>
-            <li>Core feature of BLOCKS</li>
-            <li>Fabric of the Web, desktop, mobile and more</li>
-        </ul>
-        <aside>
-        <p>we use JS heavily in our new product BLOCKS. many of the features
-        are key to making BLOCKS a good product.</p>
-        <p>second, also it's part of the fabric of the web and one of our most used
-        languages. We care that our customers can be effective while using it.</p>
+                <p>
+            Thanks to new JS implementations like V8 JS is fast, really fast, and
+            has access to new powerful web apis like WebGL that are also fun.
+
+            <p>
+            In short: JS is everywhere. So it matters that we push it forward.
+            Languages which don't evolve start to die. The other reason to make
+            JS better is simply that it's awesome if JS gets better. Our code
+            can improve. our apps can have fewer bugs. And some of these
+            features enable the runtimes to actually run code faster.
+        </aside>
     </section>
 
     <section>
         <h1>Too much new</h1>
         <h3>Let's be useful instead</h3>
         <aside>
-            <p>So ES6 is awesome. So many cool new things. That's the problem. Waaay
+            <p>So hopefully I've convinced you that JS is awesome and so new JS features is
+                a good thing. But That's the problem. Waaay
             too many cool new things. Some are more valuable than others. Some are
             more ready than others. it’s confusing, too many things in different
             states of readiness.</p>
+
             <p>So that's why I created this class. To show you the four features of
                 ES6 that are both useful and ready to use now.
-                Some of the others will be ready at some point,
-                but you can ignore them for now. We are just going to talk about what you can use today.
+                Some of the others will be ready at some point, and we'll touch on them a little bit,
+                but you can ignore them for now. We are just going to talk about what you can use right now, right here, today.
             </p>
         </aside>
     </section>
@@ -118,13 +137,17 @@
             <li>better async</li>
             <li>ignore the rest</li>
         </ul>
+        <aside>
+            <p>these are the four parts we are going to use. <i>read them</i></p>
+        </aside>
     </section>
 
     <section>
         <h1>The Problems with Variables</h1>
         <aside>
-            * normally when you want to create a variable you use the 'var' keyword.
-            'var' is great, but it has a couple of problems.
+            <p>let's start with variables</p>
+            <p>normally when you want to create a variable you use the 'var' keyword.
+                'var' is great, but it has a couple of problems.</p>
         </aside>
 
     </section>
@@ -140,7 +163,7 @@ var VARS = {
 VARS.foo = 42; // now I have a constant
         </pre>
         <aside>
-            first, var is always variable. there is no way to make a constant. if
+            first, var is always <b>variable</b>. there is no way to make a constant. if
             you really want a constant you have to create a property of an
             object and override the setter so that it can't be set.
         </aside>
@@ -159,10 +182,11 @@ function badCode() {
 }
         </pre>
         <aside>
-        * another problem is that vars are global to the function they are
+        <p>* another problem is that vars are global to the function they are
         defined in, not the block. you'd think that the log
         statement wouldn't work because
         <b>bar</b> is defined in a different block.
+            <p>
         and in a language like java or C# you'd be right, but in
         js var is global to a function, not a block.
         </aside>
@@ -177,7 +201,9 @@ function badCode() {
 }
         </pre>
         <aside>
-            another problem is that variables are hoisted.
+            <p>another problem is that variables are <b>hoisted</b>.
+
+            <p>
             look at this code.  i'm using foo before i've even defined it.
             what does this code even mean?  under the hood the javascript
             engine will hoist the variable declaration to the top of the
@@ -195,9 +221,9 @@ for(var i=0; i&lt;5; i++) {
 console.log(i);
         </pre>
         <aside>
-        look at this code with a for loop.
+            look at this code with a <b>for</b> loop.
         the variable is only used inside the loop, but i can still
-        reference it outside. this is just bugs waiting to happen.
+        reference it outside. that's crazy. this is just bugs waiting to happen.
         </aside>
     </section>
 
@@ -236,7 +262,8 @@ console.log(i);
 }        </pre>
         <aside>
             <b>let</b> is just like <b>var</b>, it's a way to create variables, but it's
-            scoped by block instead of function. now it does what we expect.
+            scoped by block instead of function. now it does what we expect. you can't use
+            x outside of it's block, so now we will get a proper error.
         </aside>
     </section>
 
@@ -890,12 +917,12 @@ Object.keys(obj).forEach((key)=>{
             <div class="grow panel">next slide</div>
         </div>
         <div class="vbox grow">
-            <div class="grow panel" id="speaker-notes">my notes</div>
+            <div class="grow panel" id="speaker-notes" style="font-size: 10pt;">my notes</div>
             <div class="grow panel" id="speaker-questions">questions</div>
         </div>
     </div>
 
-    <div id="questions-panel" class="vbox">
+    <div id="questions-panel" class="vbox" style="display:none;">
         <div class="grow scroll" id="questions-view-wrapper">
             <div id="questions-view"></div>
         </div>

@@ -202,8 +202,7 @@ ul {
 
 body {
     background-color: #35ab94;
-    /*background-color: #00a3b8;*/
-    background-image: url(https://www.transparenttextures.com/patterns/axiom-pattern.png);
+    background-image: url(../images/upfeathers.png);
 }
 
 @font-face {
@@ -277,7 +276,7 @@ pre.mini {
 }
 
 footer {
-    background-color: #cccccc;
+    background-color: #ddcc87;
     font-family: "Octanis Sans", sans-serif;
     border: 1px solid gray;
 }
